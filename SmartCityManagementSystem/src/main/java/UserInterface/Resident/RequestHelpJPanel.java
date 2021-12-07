@@ -1,29 +1,27 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package UserInterface.EnterpriseAdmin;
+package UserInterface.Resident;
 
-import Business.Enterprise.Enterprise;
+import Business.EcoSystem;
 import javax.swing.JPanel;
 
 /**
  *
- * @author mohithparvataneni
+ * @author eswar
  */
-public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+public class RequestHelpJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form AdminWorkAreaJPanel
+     * Creates new form RequestHelpJPanel
      */
-    JPanel userProcessContainer;
-    Enterprise enterprise;
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    private JPanel userProcessContainer;
+    private EcoSystem ecosystem;
+    public RequestHelpJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
-        this.enterprise = enterprise;
         this.userProcessContainer = userProcessContainer;
-          //valuelbl.setText(enterprise.getName());
+        this.ecosystem = ecosystem;
     }
 
     /**
@@ -43,7 +41,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 668, Short.MAX_VALUE)
+            .addGap(0, 688, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
