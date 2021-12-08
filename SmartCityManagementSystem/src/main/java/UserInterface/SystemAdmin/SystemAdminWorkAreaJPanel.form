@@ -20,9 +20,10 @@
               <Component id="jScrollPane1" min="-2" pref="124" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnManageNetwork" min="-2" max="-2" attributes="0"/>
                   <Component id="btnManageEnterprise" max="32767" attributes="0"/>
                   <Component id="btnManageAdmin" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnManageNetwork" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnManageResident" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="191" max="32767" attributes="0"/>
           </Group>
@@ -37,6 +38,8 @@
               <Component id="btnManageEnterprise" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Component id="btnManageAdmin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="btnManageResident" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -80,6 +83,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageAdminActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnManageResident">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Manage Resident"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageResidentActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

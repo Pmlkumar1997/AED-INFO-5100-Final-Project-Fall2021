@@ -6,6 +6,9 @@
 package UserInterface.EnterpriseAdmin;
 
 import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,7 +26,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.enterprise = enterprise;
         this.userProcessContainer = userProcessContainer;
-          //valuelbl.setText(enterprise.getName());
+        lblEnterprise.setText(enterprise.getName());
     }
 
     /**
@@ -35,19 +38,86 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ManageOrganization = new javax.swing.JButton();
+        ManageEmployee = new javax.swing.JButton();
+        lblEnterprise = new javax.swing.JLabel();
+
+        ManageOrganization.setText("Manage Organization");
+        ManageOrganization.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageOrganizationActionPerformed(evt);
+            }
+        });
+
+        ManageEmployee.setText("Manage Employee");
+        ManageEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageEmployeeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(126, 126, 126)
+                            .addComponent(ManageOrganization))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(163, 163, 163)
+                            .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(ManageOrganization)
+                .addGap(45, 45, 45)
+                .addComponent(ManageEmployee)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageOrganizationActionPerformed
+        
+        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageOrganization", manageOrganizationJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_ManageOrganizationActionPerformed
+
+    private void ManageEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageEmployeeActionPerformed
+        
+        int checkOrg=0;
+        for(Organization organization: enterprise.getOrganizationDirectory().getOrganizationList())
+        {
+            checkOrg++;
+            
+        }
+        if(checkOrg<=0)
+        {
+            JOptionPane.showMessageDialog(null, "Organisation is Unavailable to create a Employee");
+            return;
+        }
+        
+        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("manageEmployee", manageEmployeeJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_ManageEmployeeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ManageEmployee;
+    private javax.swing.JButton ManageOrganization;
+    private javax.swing.JLabel lblEnterprise;
     // End of variables declaration//GEN-END:variables
 }
