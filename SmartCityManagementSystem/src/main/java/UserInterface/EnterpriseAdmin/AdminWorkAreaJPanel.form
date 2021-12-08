@@ -16,6 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <EmptySpace min="0" pref="800" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="ManageEmployee" min="-2" pref="177" max="-2" attributes="0"/>
@@ -36,6 +37,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="lblEnterprise" min="-2" pref="22" max="-2" attributes="0"/>
@@ -45,6 +47,9 @@
               <Component id="ManageEmployee" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="147" max="32767" attributes="0"/>
           </Group>
+=======
+          <EmptySpace min="0" pref="668" max="32767" attributes="0"/>
+>>>>>>> 9124ca1b01947f08021f524a5e554cc60d5046a4
       </Group>
     </DimensionLayout>
   </Layout>

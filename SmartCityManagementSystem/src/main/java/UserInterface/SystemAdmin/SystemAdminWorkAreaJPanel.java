@@ -48,6 +48,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jTree1 = new javax.swing.JTree();
         btnManageNetwork = new javax.swing.JButton();
         btnManageEnterprise = new javax.swing.JButton();
+        btnManageEnterpriseAdmin = new javax.swing.JButton();
         btnManageAdmin = new javax.swing.JButton();
         btnManageResident = new javax.swing.JButton();
 
@@ -67,10 +68,17 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManageAdmin.setText("Manage Admin");
-        btnManageAdmin.addActionListener(new java.awt.event.ActionListener() {
+        btnManageEnterpriseAdmin.setText("Manage Enterprise Admin");
+        btnManageEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageAdminActionPerformed(evt);
+                btnManageEnterpriseAdminActionPerformed(evt);
+            }
+        });
+
+        btnManageResident.setText("Accept Resident");
+        btnManageResident.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageResidentActionPerformed(evt);
             }
         });
 
@@ -88,28 +96,36 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87)
+<<<<<<< HEAD (7ae3bf6) - Implemented Admin panel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManageAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManageResident, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 191, Short.MAX_VALUE))
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnManageResident, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageEnterpriseAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(372, 372, 372))
+>>>>>>> 9124ca1b01947f08021f524a5e554cc60d5046a4
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(btnManageNetwork)
+                .addGap(78, 78, 78)
+                .addComponent(btnManageNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnManageEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(btnManageEnterprise)
-                .addGap(40, 40, 40)
-                .addComponent(btnManageAdmin)
-                .addGap(39, 39, 39)
-                .addComponent(btnManageResident)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 43, Short.MAX_VALUE))
+                .addGap(0, 167, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -137,7 +153,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
-    private void btnManageAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAdminActionPerformed
+    private void btnManageEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseAdminActionPerformed
         
         int countEnterprise = 0;
         for(Network network:ecosystem.getNetworkList() )
@@ -156,10 +172,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add("manageEnterpriseAdminJPanel",manageEnterpriseAdminJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnManageAdminActionPerformed
-
-    private void btnManageResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageResidentActionPerformed
-        // TODO add your handling code here:
+<<<<<<< HEAD (7ae3bf6) - Implemented Admin panel
+                .addComponent(btnManageEnterprise)
+                .addGap(40, 40, 40)
+                .addComponent(btnManageAdmin)
+                .addGap(39, 39, 39)
+                .addComponent(btnManageResident)
+=======
+                .addComponent(btnManageResident, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> 9124ca1b01947f08021f524a5e554cc60d5046a4
     }//GEN-LAST:event_btnManageResidentActionPerformed
     
     public void populateTree(){
@@ -205,11 +226,27 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageAdmin;
     private javax.swing.JButton btnManageEnterprise;
+    private javax.swing.JButton btnManageEnterpriseAdmin;
     private javax.swing.JButton btnManageNetwork;
     private javax.swing.JButton btnManageResident;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
+<<<<<<< HEAD (7ae3bf6) - Implemented Admin panel
+    }//GEN-LAST:event_btnManageAdminActionPerformed
+
+    private void btnManageResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageResidentActionPerformed
+        // TODO add your handling code here:
+=======
+    }//GEN-LAST:event_btnManageEnterpriseAdminActionPerformed
+
+    private void btnManageResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageResidentActionPerformed
+        // TODO add your handling code here:
+        
+         ManageResidentApprovalPanel manageResidentApproval =new ManageResidentApprovalPanel(userProcessContainer, ecosystem);
+        userProcessContainer.add("manageNetworkJPanel",manageResidentApproval);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+>>>>>>> 9124ca1b01947f08021f524a5e554cc60d5046a4

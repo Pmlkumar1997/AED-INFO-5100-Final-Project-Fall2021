@@ -18,6 +18,7 @@ public class Network {
     
     public Network(){
         enterpriseDirectory = new EnterpriseDirectory();
+        
     }
     public String getName() {
         return name;
