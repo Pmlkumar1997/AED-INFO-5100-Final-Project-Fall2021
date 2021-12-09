@@ -5,22 +5,18 @@
     <artifactId>SmartCityManagementSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>group.id</groupId>
-            <artifactId>artifact.id</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>absoluteLayout.id</groupId>
-            <artifactId>absolutelayout.id</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
     <name>SmartCityManagementSystem</name>
+    <dependencies>
+        <dependency>
+            <groupId>database</groupId>
+            <artifactId>database</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
