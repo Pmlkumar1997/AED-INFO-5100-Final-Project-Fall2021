@@ -16,7 +16,7 @@ public class Employee {
     private static int count = 1;
     private int roleNumber;
 
-    public Employee() {
+    public Employee(String name, int roleNumber) {
         id = count;
         count++;
         this.name = name;

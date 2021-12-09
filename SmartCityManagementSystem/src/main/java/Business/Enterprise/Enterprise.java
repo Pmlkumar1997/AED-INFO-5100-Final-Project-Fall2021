@@ -14,8 +14,8 @@ import Business.Organization.OrganizationDirectory;
  */
 public abstract class Enterprise extends Organization {
     
-    private EnterpriseType enterpriseType;
-    private OrganizationDirectory organizationDirectory;
+    public EnterpriseType enterpriseType;
+    public OrganizationDirectory organizationDirectory;
 
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
@@ -55,4 +55,10 @@ public abstract class Enterprise extends Organization {
         this.enterpriseType=type;
         organizationDirectory = new OrganizationDirectory();
     }
+    
+    @Override
+    public String toString(){
+        return name;
+    }
+    
 }

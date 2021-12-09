@@ -44,8 +44,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         lblHeading = new javax.swing.JLabel();
         lblEnterpriseName = new javax.swing.JLabel();
         lblNetwork = new javax.swing.JLabel();
-        cbNetwork = new javax.swing.JComboBox<>();
-        cbEnterpriseType = new javax.swing.JComboBox<>();
+        cbNetwork = new javax.swing.JComboBox();
+        cbEnterpriseType = new javax.swing.JComboBox();
         btnAddEnterprise = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEnterprise = new javax.swing.JTable();
@@ -62,9 +62,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         lblNetwork.setText("Choose Network");
 
-        cbNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
+        cbNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null" }));
 
-        cbEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
+        cbEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null" }));
 
         btnAddEnterprise.setText("Add enterprise");
         btnAddEnterprise.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +160,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void btnAddEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEnterpriseActionPerformed
         // TODO add your handling code here:
-        Network network = (Network) cbNetwork.getSelectedItem();
+        Network network = (Network)cbNetwork.getSelectedItem();
+        
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) cbEnterpriseType.getSelectedItem();
         
         if (network == null || type == null) {
@@ -190,7 +191,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
         Enterprise enterprise = network.getEnterpriseDirectory().createEnterprise(name, type);
 
-        
         displayTable();
         txtEnterpriseName.setText("");
         
@@ -204,7 +204,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         for (Network network : ecosystem.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                Object obj[] ={network.getName(), enterprise.getEnterpriseType().getValue(), enterprise.getName()};
+                Object obj[] = {network.getName(), enterprise.getEnterpriseType().getValue(), enterprise.getName()};
                       dtm.addRow(obj);
             }
         }
@@ -216,11 +216,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         cbEnterpriseType.removeAllItems();
 
         for (Network network : ecosystem.getNetworkList()) {
-            cbNetwork.addItem(network.getName());
+            cbNetwork.addItem(network);
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            cbEnterpriseType.addItem(type.getValue());
+            cbEnterpriseType.addItem(type);
         }
 
     }
@@ -228,8 +228,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEnterprise;
     private javax.swing.JButton btnBack;
-    private javax.swing.JComboBox<String> cbEnterpriseType;
-    private javax.swing.JComboBox<String> cbNetwork;
+    private javax.swing.JComboBox cbEnterpriseType;
+    private javax.swing.JComboBox cbNetwork;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEnterpriseName;
     private javax.swing.JLabel lblEnterpriseType;

@@ -52,7 +52,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        boxOrganization = new javax.swing.JComboBox<>();
+        boxOrganization = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrganization = new javax.swing.JTable();
         btnAddOrganization = new javax.swing.JButton();
@@ -143,29 +143,29 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         boxOrganization.removeAllItems();
         for (Organization.Type type : Organization.Type.values()){
             
-            if (!type.getValue().equals(Organization.Type.Admin.getValue()))
+            if (!type.getValue().equals(Organization.Type.Admin))
             {
                 if(enterprise instanceof GrievanceManagementEnterprise)
                 {
                     
-                     boxOrganization.addItem(Organization.Type.GarbageRemoval.getValue());
-                     boxOrganization.addItem(Organization.Type.StreetLighting.getValue());
-                     boxOrganization.addItem(Organization.Type.WaterSupply.getValue());
-                     boxOrganization.addItem(Organization.Type.Police.getValue());
+                     boxOrganization.addItem(Organization.Type.GarbageRemoval);
+                     boxOrganization.addItem(Organization.Type.StreetLighting);
+                     boxOrganization.addItem(Organization.Type.WaterSupply);
+                     boxOrganization.addItem(Organization.Type.Police);
                      break;
                 }
                 else if(enterprise instanceof EmergencyResponseEnterprise)
                 {
                     
-                     boxOrganization.addItem(Organization.Type.Hospital.getValue());
-                     boxOrganization.addItem(Organization.Type.FireControl.getValue());
+                     boxOrganization.addItem(Organization.Type.Hospital);
+                     boxOrganization.addItem(Organization.Type.FireControl);
                      break;
                     
                 }
                 else if(enterprise instanceof CovidHelpEnterprise)
                 {
-                     boxOrganization.addItem(Organization.Type.Government.getValue());
-                     boxOrganization.addItem(Organization.Type.NonGovernment.getValue());
+                     boxOrganization.addItem(Organization.Type.Government);
+                     boxOrganization.addItem(Organization.Type.NonGovernment);
                      break;
                 }
                   
@@ -185,7 +185,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> boxOrganization;
+    private javax.swing.JComboBox boxOrganization;
     private javax.swing.JButton btnAddOrganization;
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;

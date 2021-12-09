@@ -57,7 +57,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         model = (DefaultTableModel) tableEmployee.getModel();
         populateOrganizationEmployeeComboBox();
-        populateEmployeeRoleComboBox();
+       populateEmployeeRoleComboBox();
     }
 
     /**
@@ -70,9 +70,9 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        orgEmpRoleComboBox = new javax.swing.JComboBox<>();
+        orgEmpRoleComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        orgTypeComboBox = new javax.swing.JComboBox<>();
+        orgTypeComboBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -80,7 +80,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEmployee = new javax.swing.JTable();
         btnAddEmployee = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtEmpName = new javax.swing.JTextField();
 
@@ -109,10 +109,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("<< Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -144,7 +144,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jButton2))
+                        .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(198, 198, 198)
                         .addComponent(btnAddEmployee)))
@@ -154,7 +154,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jButton2)
+                .addComponent(btnBack)
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -192,7 +192,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         String username = txtUser.getText();
         String password = String.valueOf(txtPassword.getPassword());
 
-        String empRole = (String) orgEmpRoleComboBox.getSelectedItem();
+        String empRole = orgEmpRoleComboBox.getSelectedItem().toString();
         
         int n = 0;
         Role role = null;
@@ -201,90 +201,90 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             
             case "GarbageRemovalMan":
                 
-                n = 1;
+                n = 2;
                 role = new GarbageRemovalManRole();
                 break;
             
             case "GarbageRemovalManager":
                 
-                n = 2;
+                n = 3;
                 role = new GarbageRemovalManagerRole();
                 break;
                 
             case "WaterSuppplier":
                 
-                n = 3;
+                n = 4;
                 role = new WaterSupplierRole();
                 break;
                 
-            case "WaterSuppplyManagerRole":
+            case "WaterSuppplyManager":
                 
-                n = 4;
+                n = 55;
                 role = new WaterSupplyManagerRole();
                 break;
                 
             case "StreetLightingMaintenanceEmployee":
                 
-                n = 5;
+                n = 6;
                 role = new StreetLightingMaintenanceEmpRole();
                 break;
             
             case "StreetLightingMaintenanceManager":
                 
-                n = 6;
+                n = 7;
                 role = new StreetLightMaintenanceManagerRole();
                 break;
                 
             case "PoliceMan":
                 
-                n = 7;
+                n = 8;
                 role = new PoliceManRole();
                 break;
                 
             case "PoliceDepartmentHead":
                 
-                n = 8;
+                n = 9;
                 role = new PoliceDepartmentHeadRole();
                 break;
                 
             case "FileControlEmployee":
                 
-                n = 9;
+                n = 10;
                 role = new FileControlEmployeeRole();
                 break;
                 
             case "FireControlManager":
                 
-                n = 10;
+                n = 11;
                 role = new FireControlManagerRole();
                 break;
                 
             case "HospitalManager":
                 
-                n = 9;
+                n = 12;
                 role = new HospitalManagerRole();
                 break;
                 
             case "Doctor":
                 
-                n = 10;
+                n = 13;
                 role = new DoctorRole();
                 break;
                 
-            case "GovernmentOrganizationManagerRole":
+            case "GovernmentOrganizationManager":
                 
-                n = 11;
+                n = 14;
                 role = new GovernmentOrganizationManagerRole();
                 break;
                 
-            case "NonGovernmentOrganizationManagerRole":
+            case "NGOManager":
                 
-                n = 12;
+                n = 15;
                 role = new NonGovernmentOrganizationManagerRole();
                 break;
                 
         }
-        
+        System.out.println(role);
         for(Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
             if(employee.getName().equals(name)){
                 JOptionPane.showMessageDialog(null, "please input another name");
@@ -292,47 +292,50 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         }
         
-        Employee employee = organization.getEmployeeDirectory().createEmployee(name);
+        Employee employee = organization.getEmployeeDirectory().createEmployee(name,n);
         UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
 
-        for (Organization organization1 : this.enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount userAccount1 : organization1.getUserAccountDirectory().getUserAccountList()) {
-                System.out.println(this.enterprise.getName() + organization.getName() + userAccount1.getUsername() + "jikewei");
-            }
-        }
+//        for (Organization organization1 : this.enterprise.getOrganizationDirectory().getOrganizationList()) {
+//            for (UserAccount userAccount1 : organization1.getUserAccountDirectory().getUserAccountList()) {
+//                System.out.println(this.enterprise.getName() + organization.getName() + userAccount1.getUsername());
+//            }
+//        }
         populateTable();
         
         
     }//GEN-LAST:event_btnAddEmployeeActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
     public void populateEmployeeRoleComboBox() {
+        
         orgEmpRoleComboBox.removeAllItems();
 
         if (this.enterprise instanceof GrievanceManagementEnterprise) {
-            orgEmpRoleComboBox.addItem("Grabage Removal Man");
-            orgEmpRoleComboBox.addItem("Garbage Removal Organization Manager");
-            orgEmpRoleComboBox.addItem("Water Supplier");
-            orgEmpRoleComboBox.addItem("Water Supply Organization Manager Director");
-            orgEmpRoleComboBox.addItem("Street Lighting Technician");
-            orgEmpRoleComboBox.addItem("Street Lighting Organization Manager");
+            orgEmpRoleComboBox.addItem("GrabageRemovalMan");
+            orgEmpRoleComboBox.addItem("GarbageRemovalOrganizationManager");
+            orgEmpRoleComboBox.addItem("WaterSupplier");
+            orgEmpRoleComboBox.addItem("WaterSupplyOrganizationManager ");
+            orgEmpRoleComboBox.addItem("StreetLightingTechnician");
+            orgEmpRoleComboBox.addItem("StreetLightingOrganizationManager");
             orgEmpRoleComboBox.addItem("PoliceMan");
-            orgEmpRoleComboBox.addItem("Police Department Head");
+            orgEmpRoleComboBox.addItem("PoliceDepartmentHead");
         }
         if (this.enterprise instanceof EmergencyResponseEnterprise) {
+            
             orgEmpRoleComboBox.addItem("Doctor");
-            orgEmpRoleComboBox.addItem("Hospital Manager");
-            orgEmpRoleComboBox.addItem("Fire Control Organization Employee");
-            orgEmpRoleComboBox.addItem("Fire Department Head");
+            orgEmpRoleComboBox.addItem("HospitalManager");
+            orgEmpRoleComboBox.addItem("FireControlOrganizationEmployee");
+            orgEmpRoleComboBox.addItem("FireDepartmentHead");
+            
         }
         if (this.enterprise instanceof CovidHelpEnterprise) {
-            orgEmpRoleComboBox.addItem("NGO Manager");
-            orgEmpRoleComboBox.addItem("Government Organization Manager");
+            orgEmpRoleComboBox.addItem("NGOManager");
+            orgEmpRoleComboBox.addItem("GovernmentOrganizationManager");
             
         }
 
@@ -343,7 +346,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         orgTypeComboBox.removeAllItems();
 
         for (Organization organization : this.enterprise.getOrganizationDirectory().getOrganizationList()) {
-            orgTypeComboBox.addItem(organization.getName());
+            orgTypeComboBox.addItem(organization);
         }
     }
     
@@ -364,15 +367,15 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEmployee;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> orgEmpRoleComboBox;
-    private javax.swing.JComboBox<String> orgTypeComboBox;
+    private javax.swing.JComboBox orgEmpRoleComboBox;
+    private javax.swing.JComboBox orgTypeComboBox;
     private javax.swing.JTable tableEmployee;
     private javax.swing.JTextField txtEmpName;
     private javax.swing.JPasswordField txtPassword;

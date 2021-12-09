@@ -11,6 +11,7 @@ import Business.Network.Network;
 import Business.Role.AdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,9 +34,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
-    dtm = (DefaultTableModel) tableEnterpriseAdmins.getModel();
-    displayTable();
-    displayNetworkComboBox();
+        dtm = (DefaultTableModel) tableEnterpriseAdmins.getModel();
+        displayNetworkComboBox();
+        //Network network = (Network) cbNetwork.getSelectedItem();
+        //displayEnterpriseComboBox(network);
+        
     }
 
     /**
@@ -48,8 +51,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         lblNetwork = new javax.swing.JLabel();
-        cbNetwork = new javax.swing.JComboBox<>();
-        cbEnterprise = new javax.swing.JComboBox<>();
+        cbNetwork = new javax.swing.JComboBox();
+        cbEnterprise = new javax.swing.JComboBox();
         btnAdd = new javax.swing.JButton();
         lblHeading = new javax.swing.JLabel();
         blbEnterpriseType = new javax.swing.JLabel();
@@ -66,9 +69,14 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         lblNetwork.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNetwork.setText("Choose Network");
 
-        cbNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
+        cbNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null" }));
+        cbNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNetworkActionPerformed(evt);
+            }
+        });
 
-        cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
+        cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null" }));
 
         btnAdd.setText("Add Admin");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -188,11 +196,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-        private void displayNetworkComboBox(){
+    private void displayNetworkComboBox(){
         cbNetwork.removeAllItems();
         
         for (Network network : ecosystem.getNetworkList()){
-            cbNetwork.addItem(network.getName());
+            cbNetwork.addItem(network);
         }
     }
     
@@ -200,24 +208,23 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         cbEnterprise.removeAllItems();
         
         for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-            cbEnterprise.addItem(enterprise.getName());
-        }
+            cbEnterprise.addItem(enterprise);
         
+        }
     }
     
-    
-    private void displayTable() {
+    private void displayTable(Network network) {
         
-
         dtm.setRowCount(0);
-        for (Network network : ecosystem.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
-                    Object obj[] = {network.getName(),enterprise.getEnterpriseType().getValue(), userAccount.getUsername(), userAccount.getPassword()};
-                    
+        
+        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+            for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) 
+                if (userAccount.getRole() instanceof AdminRole)
+                {
+                    userAccount.getEmployee().getName();
+                    Object obj[] = {network.getName(),enterprise.getEnterpriseType().getValue(), userAccount.getEmployee().getName(), userAccount.getUsername(), userAccount.getPassword()};
                     dtm.addRow(obj);
                 }
-            }
         }
     }
     
@@ -226,6 +233,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        sysAdminwjp.populateTree();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
@@ -242,10 +253,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
            || password.isEmpty())
         {
             JOptionPane.showMessageDialog(this, "One or More fields are empty..!", "Empty Fields", 2);
+            return;
         }
         
         
         Network network = (Network) cbNetwork.getSelectedItem();
+        
         Enterprise enterprise = (Enterprise) cbEnterprise.getSelectedItem();
                
         ArrayList<String> uName= new ArrayList<String>();
@@ -260,20 +273,28 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             return;
         }
      
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(adminName, 1);
         
         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(userName, password, employee, new AdminRole());
-        displayTable();
+        displayTable(network);
         
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void cbNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNetworkActionPerformed
+        // TODO add your handling code here:
+        
+        Network network = (Network) cbNetwork.getSelectedItem();
+        if(network != null)
+        displayEnterpriseComboBox(network);
+    }//GEN-LAST:event_cbNetworkActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel blbEnterpriseType;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
-    private javax.swing.JComboBox<String> cbEnterprise;
-    private javax.swing.JComboBox<String> cbNetwork;
+    private javax.swing.JComboBox cbEnterprise;
+    private javax.swing.JComboBox cbNetwork;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdminName;
     private javax.swing.JLabel lblHeading;

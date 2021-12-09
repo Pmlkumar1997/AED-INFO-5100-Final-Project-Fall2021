@@ -16,61 +16,44 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="800" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="ManageEmployee" min="-2" pref="177" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                          <Component id="ManageOrganization" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
-                          <Component id="lblEnterprise" min="-2" pref="109" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnManageOrganization" pref="149" max="32767" attributes="0"/>
+                  <Component id="btnManageEmployee" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="163" max="32767" attributes="0"/>
+              <EmptySpace pref="395" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="lblEnterprise" min="-2" pref="22" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-              <Component id="ManageOrganization" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Component id="ManageEmployee" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="147" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+              <Component id="btnManageOrganization" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+              <Component id="btnManageEmployee" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace pref="381" max="32767" attributes="0"/>
           </Group>
-=======
-          <EmptySpace min="0" pref="668" max="32767" attributes="0"/>
->>>>>>> 9124ca1b01947f08021f524a5e554cc60d5046a4
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="ManageOrganization">
+    <Component class="javax.swing.JButton" name="btnManageOrganization">
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Organization"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManageOrganizationActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageOrganizationActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ManageEmployee">
+    <Component class="javax.swing.JButton" name="btnManageEmployee">
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Employee"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManageEmployeeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageEmployeeActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblEnterprise">
     </Component>
   </SubComponents>
 </Form>
