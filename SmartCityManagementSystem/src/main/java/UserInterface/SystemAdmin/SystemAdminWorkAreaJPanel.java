@@ -75,7 +75,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManageResident.setText("Accept Resident");
+        btnManageResident.setText("Manage Resident");
         btnManageResident.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageResidentActionPerformed(evt);

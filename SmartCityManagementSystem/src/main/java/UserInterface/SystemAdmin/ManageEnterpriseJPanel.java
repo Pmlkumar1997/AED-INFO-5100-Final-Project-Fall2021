@@ -5,9 +5,11 @@
 package UserInterface.SystemAdmin;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,8 +20,6 @@ import javax.swing.table.DefaultTableModel;
 public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem ecosystem;
-    ArrayList<Network> networkList = new ArrayList<>();
-    DefaultTableModel dtm;
 
     /**
      * Creates new form ManageEnterpriseJPanel
@@ -28,7 +28,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
-        dtm = (DefaultTableModel) tableEnterprise.getModel();
+        displayTable();
+        displayComboBox();
     }
 
     /**
@@ -66,6 +67,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         cbEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
 
         btnAddEnterprise.setText("Add enterprise");
+        btnAddEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEnterpriseActionPerformed(evt);
+            }
+        });
 
         tableEnterprise.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,12 +85,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         lblEnterpriseType.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblEnterpriseType.setText("Enterprise Type");
-
-        txtEnterpriseName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnterpriseNameActionPerformed(evt);
-            }
-        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -151,10 +151,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEnterpriseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnterpriseNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnterpriseNameActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
@@ -162,6 +158,72 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnAddEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEnterpriseActionPerformed
+        // TODO add your handling code here:
+        Network network = (Network) cbNetwork.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) cbEnterpriseType.getSelectedItem();
+        
+        if (network == null || type == null) {
+            JOptionPane.showMessageDialog(null, "Invalid Input!");
+            return;
+        }
+        if(txtEnterpriseName.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a valid Enterprise Name");
+            return;
+        }
+        
+        String name = txtEnterpriseName.getText().trim();
+        
+        ArrayList<String> enterpriseNameList = new ArrayList<>();
+        
+        for(Enterprise e :network.getEnterpriseDirectory().getEnterpriseList())
+        {
+            enterpriseNameList.add(e.getName());
+            
+        }
+        if(enterpriseNameList.contains(name))
+        {
+            JOptionPane.showMessageDialog(null, "Enterprise already exists with the same name");
+            return;
+            
+        }
+        Enterprise enterprise = network.getEnterpriseDirectory().createEnterprise(name, type);
+
+        
+        displayTable();
+        txtEnterpriseName.setText("");
+        
+        
+    }//GEN-LAST:event_btnAddEnterpriseActionPerformed
+
+    
+    private void displayTable() {
+        DefaultTableModel dtm = (DefaultTableModel) tableEnterprise.getModel();
+
+        dtm.setRowCount(0);
+        for (Network network : ecosystem.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                Object obj[] ={network.getName(), enterprise.getEnterpriseType().getValue(), enterprise.getName()};
+                      dtm.addRow(obj);
+            }
+        }
+    }
+    
+    
+    private void displayComboBox() {
+        cbNetwork.removeAllItems();
+        cbEnterpriseType.removeAllItems();
+
+        for (Network network : ecosystem.getNetworkList()) {
+            cbNetwork.addItem(network.getName());
+        }
+
+        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+            cbEnterpriseType.addItem(type.getValue());
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEnterprise;
