@@ -1,17 +1,16 @@
-package UserInterface.StreetLightMaintenanceManager;
-
-import Business.Enterprise.Enterprise;
-import javax.swing.JPanel;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package UserInterface.StreetLightMaintenanceManager;
+
+import Business.Enterprise.Enterprise;
+import javax.swing.JPanel;
 
 /**
  *
- * @author mohithparvataneni
+ * @author Saketh
  */
 public class StreetLightMaintenanceManagerWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -20,9 +19,9 @@ public class StreetLightMaintenanceManagerWorkAreaJPanel extends javax.swing.JPa
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
-    public StreetLightMaintenanceManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public StreetLightMaintenanceManagerWorkAreaJPanel() {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
     }
 

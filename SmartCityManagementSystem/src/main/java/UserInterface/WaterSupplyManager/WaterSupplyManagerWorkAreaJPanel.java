@@ -10,18 +10,18 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author mohithparvataneni
+ * @author Saketh
  */
 public class WaterSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form WaterSupplyManagerWorkAreaJPanel
      */
-    JPanel userProcessContainer;
+     JPanel userProcessContainer;
     Enterprise enterprise;
-    public WaterSupplyManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public WaterSupplyManagerWorkAreaJPanel() {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
     }
 

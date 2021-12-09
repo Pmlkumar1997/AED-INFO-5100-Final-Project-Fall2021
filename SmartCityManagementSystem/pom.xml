@@ -13,8 +13,14 @@
     <name>SmartCityManagementSystem</name>
     <dependencies>
         <dependency>
-            <groupId>database</groupId>
-            <artifactId>database</artifactId>
+            <groupId>AbsoluteLayout</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>db40</groupId>
+            <artifactId>db40</artifactId>
             <version>1.0</version>
             <type>jar</type>
         </dependency>

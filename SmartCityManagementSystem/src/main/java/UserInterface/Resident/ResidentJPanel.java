@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author eswar
+ * @author Saketh
  */
 public class ResidentJPanel extends javax.swing.JPanel {
 
@@ -36,8 +36,9 @@ public class ResidentJPanel extends javax.swing.JPanel {
 
         btnGrievance = new javax.swing.JButton();
         btnEmergency = new javax.swing.JButton();
-        btnRequest = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnRequestHelp = new javax.swing.JButton();
+        btnCheckStatus = new javax.swing.JButton();
+        btnMakeDonations = new javax.swing.JButton();
 
         btnGrievance.setText("Raise Grievance complaint");
         btnGrievance.addActionListener(new java.awt.event.ActionListener() {
@@ -53,17 +54,24 @@ public class ResidentJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRequest.setText("Request for help");
-        btnRequest.addActionListener(new java.awt.event.ActionListener() {
+        btnRequestHelp.setText("Request for help");
+        btnRequestHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRequestActionPerformed(evt);
+                btnRequestHelpActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Check Status");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCheckStatus.setText("Check Status");
+        btnCheckStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCheckStatusActionPerformed(evt);
+            }
+        });
+
+        btnMakeDonations.setText("Make Donations");
+        btnMakeDonations.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMakeDonationsActionPerformed(evt);
             }
         });
 
@@ -72,13 +80,18 @@ public class ResidentJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(295, 295, 295)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnEmergency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGrievance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnMakeDonations, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCheckStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnEmergency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnGrievance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRequestHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(346, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,10 +102,12 @@ public class ResidentJPanel extends javax.swing.JPanel {
                 .addGap(43, 43, 43)
                 .addComponent(btnEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(btnRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addComponent(btnRequestHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(btnMakeDonations)
+                .addGap(62, 62, 62)
+                .addComponent(btnCheckStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(225, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -112,23 +127,33 @@ public class ResidentJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnEmergencyActionPerformed
 
-    private void btnRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestActionPerformed
+    private void btnRequestHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestHelpActionPerformed
         // TODO add your handling code here:
         RequestHelpJPanel requestHelpJPanel =new RequestHelpJPanel(userProcessContainer, ecosystem);
         userProcessContainer.add("requestHelpJPanel",requestHelpJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnRequestActionPerformed
+    }//GEN-LAST:event_btnRequestHelpActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCheckStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCheckStatusActionPerformed
+
+    private void btnMakeDonationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeDonationsActionPerformed
+        // TODO add your handling code here:
+        DonateJPanel donateJPanel =new DonateJPanel(userProcessContainer, ecosystem);
+        userProcessContainer.add("donateJPanel",donateJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_btnMakeDonationsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCheckStatus;
     private javax.swing.JButton btnEmergency;
     private javax.swing.JButton btnGrievance;
-    private javax.swing.JButton btnRequest;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnMakeDonations;
+    private javax.swing.JButton btnRequestHelp;
     // End of variables declaration//GEN-END:variables
 }
