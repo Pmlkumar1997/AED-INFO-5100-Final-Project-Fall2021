@@ -5,6 +5,15 @@
  */
 package UserInterface.Resident;
 
+
+import Business.Network.Network;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Complaint;
+import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Saketh
@@ -14,8 +23,18 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ResidentCheckStatusJPanel
      */
-    public ResidentCheckStatusJPanel() {
+    private JPanel userProcessContainer;
+    private Network network;
+    private final UserAccount userAccount;
+    private DefaultTableModel dtm;
+    int row,col;
+    public ResidentCheckStatusJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network ) {
+        
         initComponents();
+        this.userAccount = userAccount;
+        
+        dtm = (DefaultTableModel) tableResidentWorkStatus.getModel();
+        populateTable();
     }
 
     /**
@@ -42,7 +61,7 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Type of support", "Name", "Comments", "Status"
+                "Type of support", "Priority", "Comments", "Status", "Request Date", "Resolve Date"
             }
         ));
         jScrollPane1.setViewportView(tableResidentWorkStatus);
@@ -62,9 +81,9 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
                         .addComponent(btnRefresh))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addComponent(btnBack)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,8 +93,8 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBack)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(btnRefresh)
                 .addContainerGap(241, Short.MAX_VALUE))
         );
@@ -89,4 +108,23 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableResidentWorkStatus;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        
+        dtm.setRowCount(0);
+  
+        WorkQueue workQueue = userAccount.getWorkQueue();
+        
+        for(WorkRequest workRequest  : workQueue.getListOfWorkQueues() ){
+            
+            Complaint complaint = (Complaint) workRequest;
+            
+            Object[] objs = {complaint.getOrganizationType(),complaint.getPriority(), complaint.getMessage(), complaint.getStatus(), complaint.getRequestDate(),complaint.getResolveDate()};
+            dtm.addRow(objs);
+
+            
+        }
+        
+
+    }
 }

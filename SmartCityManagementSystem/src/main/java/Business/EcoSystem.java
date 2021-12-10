@@ -34,6 +34,16 @@ public class EcoSystem extends Organization {
     public ArrayList<Network> getNetworkList() {
         return networkList;
     }
+    
+    public Network getNetwork(String networkName){
+         
+        for (Network network : networkList)
+        {
+            if (network.getName().equals(networkName))
+                return network;
+        }
+        return null;
+    }
 
     public Network createAndAddNetwork() {
         Network network = new Network();

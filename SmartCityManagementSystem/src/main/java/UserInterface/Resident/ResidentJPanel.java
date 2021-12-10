@@ -5,6 +5,8 @@
 package UserInterface.Resident;
 
 import Business.EcoSystem;
+import Business.Network.Network;
+import Business.UserAccount.UserAccount;
 import UserInterface.Resident.RaiseEmergencyRequestJPanel;
 import UserInterface.Resident.RequestHelpJPanel;
 import java.awt.CardLayout;
@@ -20,9 +22,14 @@ public class ResidentJPanel extends javax.swing.JPanel {
      * Creates new form ResidentJPanel
      */
     private JPanel userProcessContainer;
-    private EcoSystem ecosystem;
-    public ResidentJPanel() {
+    private UserAccount userAccount;
+    private Network network;
+    
+    public ResidentJPanel(UserAccount userAccount, Network network) {
         initComponents();
+        this.userAccount = userAccount;
+        this.network = network;
+        
     }
 
     /**
@@ -112,8 +119,10 @@ public class ResidentJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGrievanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrievanceActionPerformed
+        
+        
         // TODO add your handling code here:
-        RaiseGrievanceRequestJPanel raiseGrievanceRequestJPanel =new RaiseGrievanceRequestJPanel(userProcessContainer, ecosystem);
+        RaiseGrievanceRequestJPanel raiseGrievanceRequestJPanel =new RaiseGrievanceRequestJPanel(userProcessContainer,userAccount, network);
         userProcessContainer.add("raiseGrievanceRequestJPanel",raiseGrievanceRequestJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -121,7 +130,7 @@ public class ResidentJPanel extends javax.swing.JPanel {
 
     private void btnEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmergencyActionPerformed
         // TODO add your handling code here:
-        RaiseEmergencyRequestJPanel raiseEmergencyRequestJPanel =new RaiseEmergencyRequestJPanel(userProcessContainer, ecosystem);
+        RaiseEmergencyRequestJPanel raiseEmergencyRequestJPanel =new RaiseEmergencyRequestJPanel(userProcessContainer,userAccount, network);
         userProcessContainer.add("raiseEmergencyRequestJPanel",raiseEmergencyRequestJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -129,7 +138,7 @@ public class ResidentJPanel extends javax.swing.JPanel {
 
     private void btnRequestHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestHelpActionPerformed
         // TODO add your handling code here:
-        RequestHelpJPanel requestHelpJPanel =new RequestHelpJPanel(userProcessContainer, ecosystem);
+        RequestHelpJPanel requestHelpJPanel =new RequestHelpJPanel(userProcessContainer,userAccount, network);
         userProcessContainer.add("requestHelpJPanel",requestHelpJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -137,11 +146,16 @@ public class ResidentJPanel extends javax.swing.JPanel {
 
     private void btnCheckStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckStatusActionPerformed
         // TODO add your handling code here:
+        ResidentCheckStatusJPanel residentCheckStatusJPanel = new ResidentCheckStatusJPanel(userProcessContainer,userAccount, network);
+        userProcessContainer.add("residentCheckStatusJPanel",residentCheckStatusJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
     }//GEN-LAST:event_btnCheckStatusActionPerformed
 
     private void btnMakeDonationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeDonationsActionPerformed
         // TODO add your handling code here:
-        DonateJPanel donateJPanel =new DonateJPanel(userProcessContainer, ecosystem);
+        DonateJPanel donateJPanel =new DonateJPanel(userProcessContainer, network);
         userProcessContainer.add("donateJPanel",donateJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

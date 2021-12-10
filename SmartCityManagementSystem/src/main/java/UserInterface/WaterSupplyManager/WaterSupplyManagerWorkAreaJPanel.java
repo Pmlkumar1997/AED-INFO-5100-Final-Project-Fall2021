@@ -19,7 +19,7 @@ public class WaterSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
      */
      JPanel userProcessContainer;
     Enterprise enterprise;
-    public WaterSupplyManagerWorkAreaJPanel() {
+    public WaterSupplyManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;

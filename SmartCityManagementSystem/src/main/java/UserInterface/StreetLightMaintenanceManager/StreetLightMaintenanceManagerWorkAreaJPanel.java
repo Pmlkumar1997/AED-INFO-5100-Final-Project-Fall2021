@@ -19,11 +19,14 @@ public class StreetLightMaintenanceManagerWorkAreaJPanel extends javax.swing.JPa
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
-    public StreetLightMaintenanceManagerWorkAreaJPanel() {
+    public StreetLightMaintenanceManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
-         this.userProcessContainer = userProcessContainer;
+        this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        
     }
+
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.

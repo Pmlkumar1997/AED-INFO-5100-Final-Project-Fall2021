@@ -6,6 +6,7 @@
 package UserInterface.Resident;
 
 import Business.EcoSystem;
+import Business.Network.Network;
 import javax.swing.JPanel;
 
 /**
@@ -18,13 +19,12 @@ public class DonateJPanel extends javax.swing.JPanel {
      * Creates new form DonateJPanel
      */
     private JPanel userProcessContainer;
-    private EcoSystem ecosystem;
-
-    public DonateJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+    private Network network;
+    public DonateJPanel(JPanel userProcessContainer,Network network) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem = ecosystem;
+        this.network= network;
     }
 
     /**

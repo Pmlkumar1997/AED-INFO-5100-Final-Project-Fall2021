@@ -10,19 +10,18 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.EnterpriseAdmin.AdminWorkAreaJPanel;
-import UserInterface.WaterSupplyManager.WaterSupplyManagerWorkAreaJPanel;
+import UserInterface.PoliceMan.PoliceManWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author mohithparvataneni
  */
-public class WaterSupplyMangerRole extends Role {
+public class PoliceManRole extends Role {
     
-     @Override
+    @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new WaterSupplyManagerWorkAreaJPanel(userProcessContainer, enterprise);
+        return new PoliceManWorkAreaJPanel(userProcessContainer, enterprise);
     }
     
 }

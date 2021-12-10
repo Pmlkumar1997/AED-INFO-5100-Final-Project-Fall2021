@@ -6,7 +6,7 @@
 package Business.Organization;
 
 import Business.Role.Role;
-import Business.Role.WaterSupplyMangerRole;
+import Business.Role.WaterSupplyManagerRole;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +23,7 @@ public class WaterSupplyOrganization extends Organization {
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new WaterSupplyMangerRole());
+        roles.add(new WaterSupplyManagerRole());
         return roles;
     }
     

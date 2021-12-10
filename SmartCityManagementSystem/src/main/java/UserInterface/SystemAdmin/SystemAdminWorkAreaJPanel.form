@@ -21,9 +21,9 @@
               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnManageResident" max="32767" attributes="0"/>
-                  <Component id="btnManageEnterprise" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnManageNetwork" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnManageEnterpriseAdmin" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnManageEnterpriseAdmin" max="32767" attributes="0"/>
+                  <Component id="btnManageEnterprise" max="32767" attributes="0"/>
+                  <Component id="btnManageNetwork" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="372" max="-2" attributes="0"/>
           </Group>
@@ -33,13 +33,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-              <Component id="btnManageNetwork" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="btnManageEnterprise" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="btnManageEnterpriseAdmin" min="-2" pref="32" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="btnManageResident" min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="btnManageNetwork" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnManageEnterprise" min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnManageEnterpriseAdmin" min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnManageResident" min="-2" pref="38" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -87,7 +87,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnManageResident">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Accept Resident"/>
+        <Property name="text" type="java.lang.String" value="Manage Resident"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageResidentActionPerformed"/>

@@ -4,7 +4,9 @@
  */
 package UserInterface.Resident;
 
-import Business.EcoSystem;
+
+import Business.Network.Network;
+import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
@@ -17,11 +19,13 @@ public class RequestHelpJPanel extends javax.swing.JPanel {
      * Creates new form RequestHelpJPanel
      */
     private JPanel userProcessContainer;
-    private EcoSystem ecosystem;
-    public RequestHelpJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+    private Network network ;
+    private UserAccount userAccount;
+    public RequestHelpJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem = ecosystem;
+        this.network=network;
+        this.userAccount = userAccount;
     }
 
     /**

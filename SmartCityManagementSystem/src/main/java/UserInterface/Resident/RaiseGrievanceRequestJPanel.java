@@ -1,6 +1,16 @@
 package UserInterface.Resident;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import static Business.Enterprise.Enterprise.EnterpriseType.GrievanceManagement;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Complaint;
+
+import Business.WorkQueue.WorkRequest;
+import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*
@@ -18,11 +28,14 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
      * Creates new form RaiseGrievanceJPanel
      */
     private JPanel userProcessContainer;
-    private EcoSystem ecosystem;
-    public RaiseGrievanceRequestJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+    private Network network;
+    private UserAccount userAccount;
+    public RaiseGrievanceRequestJPanel(JPanel userProcessContainer,UserAccount account, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem = ecosystem;
+        this.userAccount = account;
+        this.network = network;
+        displayGrievanceType();
     }
 
     /**
@@ -36,7 +49,7 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        comboGrievanceType = new javax.swing.JComboBox<>();
+        comboGrievanceType = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         comboPriority = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -53,13 +66,18 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Grievance Type");
 
-        comboGrievanceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
+        comboGrievanceType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None" }));
+        comboGrievanceType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboGrievanceTypeActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Priority");
 
-        comboPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "High Priority", "Medium Priority", "Low Priority" }));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Comments");
@@ -69,6 +87,11 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtComments);
 
         txtRaiseGrievance.setText("Raise Grievance complaint");
+        txtRaiseGrievance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRaiseGrievanceActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
 
@@ -79,9 +102,6 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(193, 193, 193)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -96,7 +116,10 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
                                 .addComponent(comboPriority, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
-                        .addComponent(txtRaiseGrievance)))
+                        .addComponent(txtRaiseGrievance))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(btnBack)))
                 .addContainerGap(276, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -122,14 +145,53 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addComponent(txtRaiseGrievance)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(456, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void comboGrievanceTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGrievanceTypeActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_comboGrievanceTypeActionPerformed
+
+    private void txtRaiseGrievanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRaiseGrievanceActionPerformed
+         
+        // TODO add your handling code here:
+        
+       String grievancetype = comboGrievanceType.getSelectedItem().toString();
+       String priority = comboPriority.getSelectedItem().toString();
+       String message = txtComments.getText();
+        
+       if (grievancetype.isEmpty()||priority.isEmpty()||message.isEmpty())
+         {
+             
+            JOptionPane.showMessageDialog(this, "One or More fields are empty !!", "Empty Fields", 2);
+            return;
+            
+         }
+
+       Complaint complaint = new Complaint();
+       complaint.setMessage(message);
+       complaint.setSender(userAccount);
+       complaint.setPriority(priority);
+       complaint.setOrganizationType(grievancetype);
+       
+
+       userAccount.getWorkQueue().addWorkRequest(complaint);
+        
+      
+    
+       JOptionPane.showMessageDialog(this, "Request placed successfully !!", "Request", 1);
+        
+        
+    }//GEN-LAST:event_txtRaiseGrievanceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JComboBox<String> comboGrievanceType;
+    private javax.swing.JComboBox comboGrievanceType;
     private javax.swing.JComboBox<String> comboPriority;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -139,4 +201,17 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea txtComments;
     private javax.swing.JButton txtRaiseGrievance;
     // End of variables declaration//GEN-END:variables
+
+    private void displayGrievanceType() {
+      
+        for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+            if(enterprise.getName().equals(GrievanceManagement)){
+                for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList())
+                comboGrievanceType.addItem(org);
+            }
+            
+            
+            
+        }
+    }
 }

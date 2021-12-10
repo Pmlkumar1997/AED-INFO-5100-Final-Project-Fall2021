@@ -4,7 +4,9 @@
  */
 package UserInterface.Resident;
 
-import Business.EcoSystem;
+
+import Business.Network.Network;
+import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
@@ -17,11 +19,13 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
      * Creates new form RaiseEmergencyRequestJPanel
      */
     private JPanel userProcessContainer;
-    private EcoSystem ecosystem;
-    public RaiseEmergencyRequestJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+    private Network network;
+    private UserAccount userAccount;
+    public RaiseEmergencyRequestJPanel(JPanel userProcessContainer, UserAccount userAccount,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem = ecosystem;
+        this.network = network;
+        this.userAccount = userAccount;
     }
 
     /**
@@ -49,6 +53,11 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtComments);
 
         btnRaiseEmergency.setText("Raise Emergency Request");
+        btnRaiseEmergency.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaiseEmergencyActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -124,6 +133,12 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
                 .addContainerGap(244, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRaiseEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaiseEmergencyActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_btnRaiseEmergencyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
