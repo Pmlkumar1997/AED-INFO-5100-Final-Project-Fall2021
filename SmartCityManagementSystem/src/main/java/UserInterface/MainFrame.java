@@ -10,6 +10,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Resident.Resident;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -35,6 +36,8 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private EcoSystem system;
+    private Resident resident;
+    private JPanel userProcessContainer;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public MainFrame() {
         initComponents();
@@ -95,7 +98,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel3.setText("New User?");
 
-        btnSignIn.setText("Sign In");
+        btnSignIn.setText("Register");
+        btnSignIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignInActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -277,6 +285,16 @@ public class MainFrame extends javax.swing.JFrame {
         layout.next(container);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+        
+        ResidentRegisterJPanel residentRegisterJPanel = new ResidentRegisterJPanel(userProcessContainer, system);
+        System.out.println(residentRegisterJPanel);
+        container.add("ResidentRegisterJPanel",residentRegisterJPanel);
+        //jSplitPane1.setRightComponent(userProcessContainer);
+        CardLayout layout=(CardLayout)container.getLayout();
+        layout.next(container);
+    }//GEN-LAST:event_btnSignInActionPerformed
 
     /**
      * @param args the command line arguments

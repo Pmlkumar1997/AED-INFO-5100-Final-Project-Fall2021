@@ -6,7 +6,11 @@
 package UserInterface.FireControlManager;
 
 import Business.Enterprise.Enterprise;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,10 +23,17 @@ public class FireControlManagerWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
+    UserAccount userAccount;
+    DefaultTableModel dtm;
+    int row,col;
+  
     public FireControlManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.userAccount = userAccount;
+        dtm = (DefaultTableModel) tableManager.getModel();
+        displayTable();
     }
 
     /**
@@ -34,19 +45,93 @@ public class FireControlManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableManager = new javax.swing.JTable();
+        cbEmployee = new javax.swing.JComboBox<>();
+        lblEmployee = new javax.swing.JLabel();
+        btnAssign = new javax.swing.JButton();
+
+        tableManager.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Organization Name", "Resident Name", "Priority", "Comments", "Status"
+            }
+        ));
+        tableManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableManagerMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableManager);
+
+        cbEmployee.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
+
+        lblEmployee.setText("Select Employee");
+
+        btnAssign.setText("Assign");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(cbEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(210, 210, 210))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(146, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tableManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableManagerMouseClicked
+        // TODO add your handling code here:
+        row = tableManager.getSelectedRow();
+        col = tableManager.getColumnCount();
+    }//GEN-LAST:event_tableManagerMouseClicked
+
+    public void displayTable(){
+         
+    
+//        dtm.setRowCount(0);
+//        WorkQueue workQueue = userAccount.getWorkQueue();
+//        for(WorkRequest workRequest : workQueue.getWorkRequestList() ){
+//            Order order = (Order) workRequest;
+//            Object[] objs = {order.getRestaurantName(),order.getFoodItemName(),order.getQuantity(), order.getReceiver().getUsername(),order.getStatus(), order.getMessage()};
+//            dtm.addRow(objs);
+//        }
+    
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JComboBox<String> cbEmployee;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblEmployee;
+    private javax.swing.JTable tableManager;
     // End of variables declaration//GEN-END:variables
 }

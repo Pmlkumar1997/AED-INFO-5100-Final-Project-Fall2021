@@ -19,9 +19,23 @@ import javax.swing.JPanel;
 public abstract class Role {
     
     public enum RoleType{
-        RestaurantAdmin("RestaurantAdmin"),
-        Customer("Customer"),
-        DeliveryMan("Delivery"),
+        
+        Resident("Resident"),
+        Admin("Admin"),
+        GarbageRemovalMan("GarbageRemovalMan"),
+        GarbageRemovalManager("GarbageRemovalManager"),
+        WaterSuppplier("WaterSupplier"),
+        WaterSuppplyManager("WaterSuppplyManager"),
+        StreetLightingMaintenanceEmployee("StreetLightingMaintenanceEmployee"),
+        StreetLightingMaintenanceManager("StreetLightingMaintenanceManager"),
+        PoliceMan("PoliceMan"),
+        PoliceDepartmentHead("PoliceDepartmentHead"),
+        FileControlEmployee("FileControlEmployee"),
+        FireControlManager("FireControlManager"),
+        HospitalManager("HospitalManager"),
+        Doctor("Doctor"),
+        GovernmentOrganizationManager("GovernmentOrganizationManager"),
+        NGOManager("NGOManager"),
         SysAdmin("Sysadmin");
         
         private String value;
