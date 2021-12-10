@@ -5,16 +5,24 @@
     <artifactId>SmartCityManagementSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+    </properties>
+    <name>SmartCityManagementSystem</name>
     <dependencies>
         <dependency>
-            <groupId>group.id</groupId>
-            <artifactId>artifact.id</artifactId>
+            <groupId>AbsoluteLayout</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
             <version>1.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>absoluteLayout.id</groupId>
-            <artifactId>absolutelayout.id</artifactId>
+            <groupId>db40</groupId>
+            <artifactId>db40</artifactId>
             <version>1.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>mail</groupId>
@@ -23,10 +31,13 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+<<<<<<< HEAD
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <name>SmartCityManagementSystem</name>
+=======
+>>>>>>> 03365672d0cc8c8017c29fec834b81ab18a6c1d3
 </project>

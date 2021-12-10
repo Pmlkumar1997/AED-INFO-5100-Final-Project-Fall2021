@@ -77,6 +77,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
 
         cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null" }));
+        cbEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEnterpriseActionPerformed(evt);
+            }
+        });
 
         btnAdd.setText("Add Admin");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +292,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         if(network != null)
         displayEnterpriseComboBox(network);
     }//GEN-LAST:event_cbNetworkActionPerformed
+
+    private void cbEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEnterpriseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbEnterpriseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
