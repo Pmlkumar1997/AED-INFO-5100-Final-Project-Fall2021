@@ -5,51 +5,48 @@
  */
 package Business.Resident;
 
+import Business.Network.Network;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author mohithparvataneni
  */
 public class Resident {
     
-    private String fName;
-    private String lNmae;
+    private String name;
     private int age;
     private String sex;
-    private String location;
-    private String id;
-    private String mail;
+    private String address;
+    private String email;
     private String phone;
+    private String idType;
+    private String id;
     private String userName;
     private String password;
+    private String filename;
+    private ImageIcon idProof;
+    private Network network;
 
-
-    public Resident(String fName, String lNmae, int age, String sex, String location, String id, String mail, String phone, String userName, String password) {
-        this.fName = fName;
-        this.lNmae = lNmae;
+    public Resident(String name, int age, String sex, String address, String email, String phone, String idType, String id, String userName, String password, Network network) {
+        this.name = name;
         this.age = age;
         this.sex = sex;
-        this.location = location;
-        this.id = id;
-        this.mail = mail;
+        this.address = address;
+        this.email = email;
         this.phone = phone;
+        this.id = id;
         this.userName = userName;
         this.password = password;
+        this.network = network;
     }
 
-    public String getfName() {
-        return fName;
+    public String getName() {
+        return name;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public String getlNmae() {
-        return lNmae;
-    }
-
-    public void setlNmae(String lNmae) {
-        this.lNmae = lNmae;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAge() {
@@ -68,28 +65,20 @@ public class Resident {
         this.sex = sex;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhone() {
@@ -98,6 +87,14 @@ public class Resident {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -115,6 +112,39 @@ public class Resident {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public ImageIcon getIdProof() {
+        return idProof;
+    }
+
+    public void setIdProof(ImageIcon idProof) {
+        this.idProof = idProof;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+
+    public String getIdType() {
+        return idType;
+    }
+
+    public void setIdType(String idType) {
+        this.idType = idType;
+    }
+
     
     
     
