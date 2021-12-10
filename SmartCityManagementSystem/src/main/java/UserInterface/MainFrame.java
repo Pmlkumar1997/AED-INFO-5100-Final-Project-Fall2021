@@ -12,10 +12,15 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -36,6 +41,10 @@ public class MainFrame extends javax.swing.JFrame {
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
         displayTime();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        //this.setUndecorated(true);
+        this.setVisible(true);
+        
     }
 
     /**
@@ -59,8 +68,12 @@ public class MainFrame extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         lblTime = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SMART CITY MANAGEMENT SYSTEM");
+
+        jPanel1.setBackground(new java.awt.Color(102, 220, 222));
 
         jLabel1.setText("Username");
 
@@ -73,7 +86,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        btnLogOut.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         btnLogOut.setText("Logout");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,19 +149,23 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSignIn)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(903, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
 
         container.setLayout(new java.awt.CardLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/smart city background.jpg")); // NOI18N
+        container.add(jLabel4, "card2");
+
         jSplitPane1.setRightComponent(container);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,6 +174,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
     public void displayTime() {
         Timer timer = new Timer(1000, new ActionListener() {
 
@@ -303,6 +321,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSplitPane jSplitPane1;
