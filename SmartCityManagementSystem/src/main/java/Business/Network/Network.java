@@ -34,6 +34,16 @@ public class Network {
     public EnterpriseDirectory getEnterpriseDirectory() {
         return enterpriseDirectory;
     }
+
+    public ResidentDirectory getResidentDirectory() {
+        return residentDirectory;
+    }
+
+    public void setResidentDirectory(ResidentDirectory residentDirectory) {
+        this.residentDirectory = residentDirectory;
+    }
+    
+    
     
     @Override
     public String toString(){
