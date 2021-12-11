@@ -10,19 +10,18 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.SystemAdmin.SystemAdminWorkAreaJPanel;
+import UserInterface.EnterpriseAdmin.AdminWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author mohithparvataneni
  */
-public class SystemAdminRole extends Role{
-
+public class ResidentRole extends Role {
+    
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system,Network network) {
-        return new SystemAdminWorkAreaJPanel(userProcessContainer, system, account);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
+        return new ResidentWorkAreaJPanel(userProcessContainer, enterprise);
     }
     
 }
-

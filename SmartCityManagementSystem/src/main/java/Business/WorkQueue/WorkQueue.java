@@ -27,4 +27,14 @@ public class WorkQueue {
         ListOfWorkQueues.add(workRequest);
     }
     
+    private ArrayList<WorkRequest> workRequestList;
+
+    public WorkQueue() {
+        workRequestList = new ArrayList();
+    }
+
+    public ArrayList<WorkRequest> getWorkRequestList() {
+        return workRequestList;
+    }
+    
 }

@@ -6,6 +6,8 @@
 package Business.UserAccount;
 
 import Business.Employee.Employee;
+import Business.Resident.Resident;
+import Business.Role.ResidentRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -41,6 +43,18 @@ public class UserAccountDirectory {
         userAccount.setRole(role);
         userAccountList.add(userAccount);
         return userAccount;
+    }
+    
+    public UserAccount createResidentAccount(String username, String password, Resident resident)
+    {
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccount.setResident(resident);
+        ResidentRole role = new ResidentRole();
+        userAccount.setRole(role);
+        userAccountList.add(userAccount);
+        return userAccount;  
     }
     
     public boolean checkIfUsernameIsUnique(String username){

@@ -6,6 +6,7 @@
 package Business.Network;
 
 import Business.Enterprise.EnterpriseDirectory;
+import Business.Resident.ResidentDirectory;
 
 /**
  *
@@ -15,9 +16,11 @@ public class Network {
     
     private String name;
     private EnterpriseDirectory enterpriseDirectory;
+    private ResidentDirectory residentDirectory;
     
     public Network(){
         enterpriseDirectory = new EnterpriseDirectory();
+        residentDirectory = new ResidentDirectory();
         
         
     }
@@ -32,6 +35,16 @@ public class Network {
     public EnterpriseDirectory getEnterpriseDirectory() {
         return enterpriseDirectory;
     }
+
+    public ResidentDirectory getResidentDirectory() {
+        return residentDirectory;
+    }
+
+    public void setResidentDirectory(ResidentDirectory residentDirectory) {
+        this.residentDirectory = residentDirectory;
+    }
+    
+    
     
     @Override
     public String toString(){
