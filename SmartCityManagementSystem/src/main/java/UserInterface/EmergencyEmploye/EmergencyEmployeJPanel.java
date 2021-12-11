@@ -3,26 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.GarbageRemovalMan;
-
-import Business.Enterprise.Enterprise;
-import javax.swing.JPanel;
+package UserInterface.EmergencyEmploye;
 
 /**
  *
- * @author mohithparvataneni
+ * @author hp
  */
-public class GarbageRemovalManWorkAreaJPanel extends javax.swing.JPanel {
+public class EmergencyEmployeJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form GarbageRemovalManWorkAreaJPanel
+     * Creates new form EmergencyEmployeJPanel
      */
-    JPanel userProcessContainer;
-    Enterprise enterprise;
-    public GarbageRemovalManWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public EmergencyEmployeJPanel() {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
     }
 
     /**

@@ -30,10 +30,10 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Network network;
     private UserAccount userAccount;
-    public RaiseGrievanceRequestJPanel(JPanel userProcessContainer,UserAccount account, Network network) {
+    public RaiseGrievanceRequestJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.userAccount = account;
+        this.userAccount = userAccount;
         this.network = network;
         displayGrievanceType();
     }

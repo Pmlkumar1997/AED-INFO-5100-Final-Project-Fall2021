@@ -3,26 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.HospitalManager;
-
-import Business.Enterprise.Enterprise;
-import javax.swing.JPanel;
+package UserInterface.GrievanceEmploye;
 
 /**
  *
- * @author mohithparvataneni
+ * @author hp
  */
-public class HospitalManagerWorkAreaJPanel extends javax.swing.JPanel {
+public class GrievanceEmployeJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form HospitalManagerWorkAreaJPanel
+     * Creates new form GrievanceEmployeJPanel
      */
-    JPanel userProcessContainer;
-    Enterprise enterprise;
-    public HospitalManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public GrievanceEmployeJPanel() {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
     }
 
     /**

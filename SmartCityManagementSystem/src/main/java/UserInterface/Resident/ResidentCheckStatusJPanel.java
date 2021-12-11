@@ -28,7 +28,7 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
     private final UserAccount userAccount;
     private DefaultTableModel dtm;
     int row,col;
-    public ResidentCheckStatusJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network ) {
+    public ResidentCheckStatusJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network  ) {
         
         initComponents();
         this.userAccount = userAccount;

@@ -402,7 +402,7 @@ public class ResidentRegisterJPanel extends javax.swing.JPanel {
                         if (enterprise.getWorkQueue() == null) {
                             enterprise.setWorkQueue(new WorkQueue());
                         }
-                        enterprise.getWorkQueue().getWorkRequestList().add(registrationRequest);
+                        enterprise.getWorkQueue().getListOfWorkQueues().add(registrationRequest);
                        
                     }
                 }

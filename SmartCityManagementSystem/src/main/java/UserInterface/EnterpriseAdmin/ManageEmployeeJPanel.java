@@ -219,7 +219,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 
             case "WaterSuppplyManager":
                 
-                n = 55;
+                n = 5;
                 role = new WaterSupplyManagerRole();
                 break;
                 

@@ -3,30 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.StreetLightMaintenanceManager;
-
-import Business.Enterprise.Enterprise;
-import javax.swing.JPanel;
+package UserInterface.GrievanceManager;
 
 /**
  *
- * @author Saketh
+ * @author hp
  */
-public class StreetLightMaintenanceManagerWorkAreaJPanel extends javax.swing.JPanel {
+public class GrievanceManagerJpanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form StreetLightMaintenanceManagerWorkAreaJPanel
+     * Creates new form GrievanceManagerJpanel
      */
-    JPanel userProcessContainer;
-    Enterprise enterprise;
-    public StreetLightMaintenanceManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public GrievanceManagerJpanel() {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
-        
     }
-
- 
 
     /**
      * This method is called from within the constructor to initialize the form.

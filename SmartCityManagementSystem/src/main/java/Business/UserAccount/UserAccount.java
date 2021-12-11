@@ -6,6 +6,7 @@
 package Business.UserAccount;
 
 import Business.Employee.Employee;
+import Business.Resident.Resident;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
 
@@ -20,6 +21,15 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private Resident resident;
+
+    public Resident getResident() {
+        return resident;
+    }
+
+    public void setResident(Resident resident) {
+        this.resident = resident;
+    }
 
     public UserAccount() {
         workQueue = new WorkQueue();
