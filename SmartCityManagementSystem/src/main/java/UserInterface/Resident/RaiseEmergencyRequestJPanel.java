@@ -5,8 +5,14 @@
 package UserInterface.Resident;
 
 
+import Business.Enterprise.Enterprise;
+import static Business.Enterprise.Enterprise.EnterpriseType.EmergencyResponse;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Complaint;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -26,6 +32,7 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.network = network;
         this.userAccount = userAccount;
+        displayEmergencyType();
     }
 
     /**
@@ -137,6 +144,31 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
     private void btnRaiseEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaiseEmergencyActionPerformed
         // TODO add your handling code here:
         
+        String emergencyType = comboEmergencyType.getSelectedItem().toString();
+        String priority = comboPriority.getSelectedItem().toString();
+        String comments = txtComments.getText();
+        
+        
+      
+        
+        Complaint complaint = new Complaint();
+        complaint.setOrganizationType(emergencyType);
+        complaint.setPriority(priority);
+        complaint.setMessage(comments);
+        complaint.setSender(userAccount);
+        complaint.setStatus("Complaint raised");
+     
+        
+        
+        
+        userAccount.getWorkQueue().addWorkRequest(complaint);
+        
+           JOptionPane.showMessageDialog(this, "Request placed successfully !!", "Request", 1);
+       
+        
+        
+        
+        
         
     }//GEN-LAST:event_btnRaiseEmergencyActionPerformed
 
@@ -153,4 +185,17 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtComments;
     // End of variables declaration//GEN-END:variables
+
+    private void displayEmergencyType() {
+        
+        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+            if(e.getName().equals(EmergencyResponse)){
+                for(Organization org : e.organizationDirectory.getOrganizationList()){
+                    comboEmergencyType.addItem(org.toString());
+                }
+                
+                
+            }
+        }
+    }
 }

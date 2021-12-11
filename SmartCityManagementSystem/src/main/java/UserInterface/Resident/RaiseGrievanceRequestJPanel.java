@@ -177,11 +177,14 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
        complaint.setSender(userAccount);
        complaint.setPriority(priority);
        complaint.setOrganizationType(grievancetype);
+       complaint.setStatus("Complaint raised");
        
 
        userAccount.getWorkQueue().addWorkRequest(complaint);
+       
+       Organization organization = (Organization) comboGrievanceType.getSelectedItem();
         
-      
+       organization.getWorkQueue().addWorkRequest(complaint);
     
        JOptionPane.showMessageDialog(this, "Request placed successfully !!", "Request", 1);
         
