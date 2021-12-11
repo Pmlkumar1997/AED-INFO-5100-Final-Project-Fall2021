@@ -13,7 +13,7 @@ public class Doctor extends Employee {
 
     public Doctor(String name) {
         
-        super(name, 13);
+        super(name, 12);
     }
     
 }

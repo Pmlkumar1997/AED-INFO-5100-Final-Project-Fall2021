@@ -76,7 +76,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SMART CITY MANAGEMENT SYSTEM");
 
-        jPanel1.setBackground(new java.awt.Color(102, 220, 222));
+        jPanel1.setBackground(new java.awt.Color(99, 204, 204));
 
         jLabel1.setText("Username");
 
@@ -163,8 +163,6 @@ public class MainFrame extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(jPanel1);
 
         container.setLayout(new java.awt.CardLayout());
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/smart city background.jpg")); // NOI18N
         container.add(jLabel4, "card2");
 
         jSplitPane1.setRightComponent(container);

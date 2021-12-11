@@ -13,7 +13,7 @@ public class FireControlEmployee extends Employee {
 
     public FireControlEmployee(String name) {
         
-        super(name, 6);
+        super(name, 10);
     }
     
 }

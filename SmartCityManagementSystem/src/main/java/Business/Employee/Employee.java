@@ -56,46 +56,46 @@ public class Employee {
         String role = "";
         switch (roleNumber) {
             case 2:
-                role = "Garbage Removal Man";
+                role = "GarbageRemovalMan";
                 break;
             case 3:
-                role = "Garbage Removal Manager";
+                role = "GarbageRemovalManager";
                 break;
             case 4:
-                role = "Water Supplier";
+                role = "WaterSupplier";
                 break;
             case 5:
-                role = "Water Supply Manager";
+                role = "WaterSupplyManager";
                 break;
             case 6:
-                role = "Fire Control Employee";
+                role = "FireControlEmployee";
                 break;
             case 7:
-                role = "Fire Control Manager";
+                role = "FireControlManager";
                 break;
             case 8:
-                role = "Street Lighting Maintenance Employee";
+                role = "StreetLightingMaintenanceEmployee";
                 break;
             case 9:
-                role = "Street Lighting Maintenance Manager";
+                role = "StreetLightingMaintenanceManager";
                 break;
             case 10:
-                role = "Police Department Head";
+                role = "PoliceDepartmentHead";
                 break;
             case 11:
-                role = "Police Man";
+                role = "PoliceMan";
                 break;
             case 12:
-                role = "Hospital Manager";
+                role = "HospitalManager";
                 break;
             case 13:
                 role = "Doctor";
                 break;
             case 14:
-                role = "NGO Manager";
+                role = "NGOManager";
                 break;
             case 15:
-                role = "Government Organization Manager";
+                role = "GovernmentOrganizationManager";
                 break;
              
         }

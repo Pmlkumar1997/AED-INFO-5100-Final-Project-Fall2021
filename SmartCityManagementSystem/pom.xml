@@ -7,20 +7,20 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <name>SmartCityManagementSystem</name>
     <dependencies>
         <dependency>
-            <groupId>AbsoluteLayout</groupId>
-            <artifactId>AbsoluteLayout</artifactId>
+            <groupId>database</groupId>
+            <artifactId>database</artifactId>
             <version>1.0</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>db40</groupId>
-            <artifactId>db40</artifactId>
+            <groupId>absoluteLayout</groupId>
+            <artifactId>absoluteLayout</artifactId>
             <version>1.0</version>
             <type>jar</type>
         </dependency>
@@ -31,13 +31,4 @@
             <type>jar</type>
         </dependency>
     </dependencies>
-<<<<<<< HEAD
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-    <name>SmartCityManagementSystem</name>
-=======
->>>>>>> 03365672d0cc8c8017c29fec834b81ab18a6c1d3
 </project>

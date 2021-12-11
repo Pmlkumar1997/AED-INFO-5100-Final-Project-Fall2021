@@ -12,7 +12,7 @@ package Business.Employee;
 public class HospitalManager extends Employee {
 
     public HospitalManager(String name) {
-        super(name, 12);
+        super(name, 13);
     }
     
 }

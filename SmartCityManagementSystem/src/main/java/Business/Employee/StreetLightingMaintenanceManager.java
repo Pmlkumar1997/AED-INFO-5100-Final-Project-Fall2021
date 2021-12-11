@@ -12,7 +12,7 @@ package Business.Employee;
 public class StreetLightingMaintenanceManager extends Employee {
 
     public StreetLightingMaintenanceManager(String name) {
-        super(name, 9);
+        super(name, 7);
     }
     
 }

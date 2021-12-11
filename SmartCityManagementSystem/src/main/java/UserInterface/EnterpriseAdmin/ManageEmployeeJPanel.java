@@ -57,7 +57,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         model = (DefaultTableModel) tableEmployee.getModel();
         populateOrganizationEmployeeComboBox();
-       populateEmployeeRoleComboBox();
+        populateEmployeeRoleComboBox();
     }
 
     /**
@@ -205,7 +205,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 role = new GarbageRemovalManRole();
                 break;
             
-            case "GarbageRemovalManager":
+            case "GarbageRemovalOrganizationManager":
                 
                 n = 3;
                 role = new GarbageRemovalManagerRole();
@@ -217,19 +217,19 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 role = new WaterSupplierRole();
                 break;
                 
-            case "WaterSuppplyManager":
+            case "WaterSupplyOrganizationManager":
                 
-                n = 55;
+                n = 5;
                 role = new WaterSupplyManagerRole();
                 break;
                 
-            case "StreetLightingMaintenanceEmployee":
+            case "StreetLightingTechnician":
                 
                 n = 6;
                 role = new StreetLightingMaintenanceEmpRole();
                 break;
             
-            case "StreetLightingMaintenanceManager":
+            case "StreetLightingOrganizationManager":
                 
                 n = 7;
                 role = new StreetLightMaintenanceManagerRole();
@@ -247,40 +247,40 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 role = new PoliceDepartmentHeadRole();
                 break;
                 
-            case "FileControlEmployee":
+            case "FireControlOrganizationEmployee":
                 
                 n = 10;
                 role = new FileControlEmployeeRole();
                 break;
                 
-            case "FireControlManager":
+            case "FireDepartmentHead":
                 
                 n = 11;
                 role = new FireControlManagerRole();
                 break;
                 
-            case "HospitalManager":
-                
-                n = 12;
-                role = new HospitalManagerRole();
-                break;
-                
             case "Doctor":
                 
-                n = 13;
+                n = 12;
                 role = new DoctorRole();
                 break;
                 
-            case "GovernmentOrganizationManager":
+            case "HospitalManager":
                 
-                n = 14;
-                role = new GovernmentOrganizationManagerRole();
+                n = 13;
+                role = new HospitalManagerRole();
                 break;
                 
             case "NGOManager":
                 
-                n = 15;
+                n = 14;
                 role = new NonGovernmentOrganizationManagerRole();
+                break;
+                
+            case "GovernmentOrganizationManager":
+                
+                n = 15;
+                role = new GovernmentOrganizationManagerRole();
                 break;
                 
         }
@@ -293,6 +293,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         }
         
         Employee employee = organization.getEmployeeDirectory().createEmployee(name,n);
+        System.out.println(employee);
         UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
 
 //        for (Organization organization1 : this.enterprise.getOrganizationDirectory().getOrganizationList()) {
@@ -316,7 +317,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         orgEmpRoleComboBox.removeAllItems();
 
         if (this.enterprise instanceof GrievanceManagementEnterprise) {
-            orgEmpRoleComboBox.addItem("GrabageRemovalMan");
+            orgEmpRoleComboBox.addItem("GarbageRemovalMan");
             orgEmpRoleComboBox.addItem("GarbageRemovalOrganizationManager");
             orgEmpRoleComboBox.addItem("WaterSupplier");
             orgEmpRoleComboBox.addItem("WaterSupplyOrganizationManager ");

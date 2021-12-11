@@ -13,11 +13,7 @@ You can copy and paste the single properties, into the pom.xml file and the IDE 
 That way multiple projects can share the same settings (useful for formatting rules for example).
 Any value defined here will override the pom.xml file value but is only applicable to the current project.
 -->
-<<<<<<< HEAD
-        <netbeans.compile.on.save>all</netbeans.compile.on.save>
+        <netbeans.compile.on.save>none</netbeans.compile.on.save>
         <netbeans.hint.jdkPlatform>JDK_1.8</netbeans.hint.jdkPlatform>
-=======
-        <netbeans.hint.jdkPlatform>JDK_16</netbeans.hint.jdkPlatform>
->>>>>>> 03365672d0cc8c8017c29fec834b81ab18a6c1d3
     </properties>
 </project-shared-configuration>
