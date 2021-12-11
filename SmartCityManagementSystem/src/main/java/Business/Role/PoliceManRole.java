@@ -10,18 +10,18 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.PoliceMan.PoliceManWorkAreaJPanel;
+import UserInterface.GrievanceEmploye.GrievanceEmployeJPanel;
 import javax.swing.JPanel;
 
 /**
  *
- * @author mohithparvataneni
+ * @author Saketh
  */
 public class PoliceManRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new PoliceManWorkAreaJPanel(userProcessContainer, enterprise);
+        return new GrievanceEmployeJPanel( userProcessContainer,  account,  organization);
     }
     
 }

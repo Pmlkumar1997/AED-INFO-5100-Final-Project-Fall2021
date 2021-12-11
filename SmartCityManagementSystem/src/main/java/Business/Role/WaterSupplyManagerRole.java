@@ -11,18 +11,19 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import UserInterface.EnterpriseAdmin.AdminWorkAreaJPanel;
+import UserInterface.GrievanceManager.GrievanceManagerJpanel;
 
 import javax.swing.JPanel;
 
 /**
  *
- * @author mohithparvataneni
+ * @author Saketh
  */
 public class WaterSupplyManagerRole extends Role {
     
-//     @Override
-////    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-////        return new (userProcessContainer, enterprise);
-////    }
-//    
+     @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
+        return new GrievanceManagerJpanel( userProcessContainer,  account,  organization );
+    }
+  
 }

@@ -5,17 +5,40 @@
  */
 package UserInterface.GrievanceManager;
 
+import Business.Employee.Employee;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Complaint;
+import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author hp
+ * @author Saketh
  */
 public class GrievanceManagerJpanel extends javax.swing.JPanel {
 
     /**
      * Creates new form GrievanceManagerJpanel
      */
-    public GrievanceManagerJpanel() {
+    private JPanel userProcessContainer;
+    private UserAccount userAccount;
+    private Organization organization;
+    DefaultTableModel dtm;
+    int row,col;
+    public GrievanceManagerJpanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization ) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.organization = organization;
+        
+        dtm = (DefaultTableModel) tblOrganizationManager.getModel();
+        populateTable();
+        displayEmployes();
     }
 
     /**
@@ -27,19 +50,260 @@ public class GrievanceManagerJpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
+        comboGrievanceEmploye = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblOrganizationManager = new javax.swing.JTable();
+        btnAcceptRequest = new javax.swing.JButton();
+        btnDeclineRequest = new javax.swing.JButton();
+        btnAssign = new javax.swing.JButton();
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("Assign Employe");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Grievance Enterprise Manager ");
+
+        tblOrganizationManager.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Resident Name", "Priority", "Message", "Status", "Request Date", "Resolve Date"
+            }
+        ));
+        tblOrganizationManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrganizationManagerMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblOrganizationManager);
+
+        btnAcceptRequest.setText("Accept Request");
+        btnAcceptRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptRequestActionPerformed(evt);
+            }
+        });
+
+        btnDeclineRequest.setText("Decline Request");
+        btnDeclineRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeclineRequestActionPerformed(evt);
+            }
+        });
+
+        btnAssign.setText("Assign");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAcceptRequest)
+                                .addGap(74, 74, 74)
+                                .addComponent(btnDeclineRequest))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(42, 42, 42)
+                                .addComponent(comboGrievanceEmploye, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAssign)))))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAcceptRequest)
+                    .addComponent(btnDeclineRequest))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(comboGrievanceEmploye, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssign))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblOrganizationManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrganizationManagerMouseClicked
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_tblOrganizationManagerMouseClicked
+
+    private void btnAcceptRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptRequestActionPerformed
+        // TODO add your handling code here:
+         row = tblOrganizationManager.getSelectedRow();
+        
+        String currentStatus = dtm.getValueAt(row, 3).toString();
+        
+        if(currentStatus.equalsIgnoreCase("Complaint raised"))
+        {
+
+            organization.getWorkQueue().getListOfWorkQueues().get(row).setStatus("Complaint Accepted");
+            
+          
+            JOptionPane.showMessageDialog(this, "Complaint is Accepted", " Complaint Accepted", 1);
+           
+        }
+        
+        else if(currentStatus.equalsIgnoreCase("Complaint Declined")){
+            
+            JOptionPane.showMessageDialog(this, "This complaint is Already declined earlier", " Complaint declined", 1);
+            
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Complaint is already accepted", " Complaint Accepted", 1);
+            
+        }
+        populateTable();
+        
+        
+        
+    }//GEN-LAST:event_btnAcceptRequestActionPerformed
+
+    private void btnDeclineRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineRequestActionPerformed
+        // TODO add your handling code here:
+        
+        row = tblOrganizationManager.getSelectedRow();
+        String currentStatus = dtm.getValueAt(row, 3).toString();
+        if(currentStatus.equalsIgnoreCase("Complaint raised"))
+        {
+            userAccount.getWorkQueue().getListOfWorkQueues().get(row).setStatus("Comlplaint Declined");
+            
+        }
+         else if(currentStatus.equalsIgnoreCase("Complaint Declined")){
+            
+            JOptionPane.showMessageDialog(this, "This complaint is Already declined earlier", " Complaint declined", 1);
+            
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Complaint is already accepted", " Complaint Accepted", 1);
+            
+        }
+        populateTable();       
+    }//GEN-LAST:event_btnDeclineRequestActionPerformed
+
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+        // TODO add your handling code here:
+        
+         UserAccount userAccount = (UserAccount) comboGrievanceEmploye.getSelectedItem();
+        
+        row = tblOrganizationManager.getSelectedRow();
+        String currentStatus = dtm.getValueAt(row, 3).toString();
+        
+        Complaint complaint = (Complaint) organization.getWorkQueue().getListOfWorkQueues().get(row);
+        
+        if(currentStatus.equalsIgnoreCase("Complaint Accepted"))
+        {
+
+            organization.getWorkQueue().getListOfWorkQueues().get(row).setStatus("Assigned Employee");
+            
+          
+            JOptionPane.showMessageDialog(this, "Complaint is Accepted and assigned to respective Employee", " Complaint is forwarded to employee", 1);
+           
+        }
+        
+        else if(currentStatus.equalsIgnoreCase("Complaint Declined")){
+            
+            JOptionPane.showMessageDialog(this, "This complaint is Already declined earlier", " Complaint declined", 1);
+            
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Complaint is already Assigend to Employee", " Complaint Accepted", 1);
+            
+        }
+        
+        userAccount.getWorkQueue().addWorkRequest(complaint);
+        
+        
+        complaint.setSender(userAccount);
+        complaint.setStatus("Assigned to Employee");
+        populateTable();
+    }//GEN-LAST:event_btnAssignActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcceptRequest;
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnDeclineRequest;
+    private javax.swing.JComboBox comboGrievanceEmploye;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblOrganizationManager;
     // End of variables declaration//GEN-END:variables
-}
+
+        private void populateTable() {
+      dtm.setRowCount(0);
+  
+        WorkQueue workQueue = organization.getWorkQueue();
+        
+        for(WorkRequest workRequest  : workQueue.getListOfWorkQueues() ){
+            Complaint complaint = (Complaint) workRequest;
+            
+            String receiver = "Not yet Assigned"; 
+            if( complaint.getReceiver() != null)
+                receiver = complaint.getReceiver().getEmployee().getName();
+            
+            Date date = null;
+       
+            if(complaint.getStatus().equalsIgnoreCase("Complaint Resolved")) {
+                  date = complaint.getResolveDate();
+            }
+
+            Object[] objs = {complaint.getSender().getResident().getName(),complaint.getPriority(), complaint.getMessage(), complaint.getStatus(),receiver, complaint.getRequestDate(),date};
+            dtm.addRow(objs);
+            
+        }
+    }
+        
+        private void displayEmployes() {
+         
+                for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList())
+                    comboGrievanceEmploye.addItem(userAccount);
+            }
+        
+        
+       
+
+            
+        }
+        
+    
+
+
+
+
+
+
+
+
+
+            
+            

@@ -5,6 +5,16 @@
  */
 package UserInterface.GrievanceEmploye;
 
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Complaint;
+import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hp
@@ -14,8 +24,20 @@ public class GrievanceEmployeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form GrievanceEmployeJPanel
      */
-    public GrievanceEmployeJPanel() {
+    private JPanel userProcessContainer;
+    private UserAccount userAccount;
+    private Organization organization;
+     DefaultTableModel dtm;
+    int row,col;
+    public GrievanceEmployeJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.organization = organization;
+        dtm = (DefaultTableModel) tblGrievanceEmployee.getModel();
+        populateTable();
+        
+        
     }
 
     /**
@@ -27,19 +49,154 @@ public class GrievanceEmployeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblGrievanceEmployee = new javax.swing.JTable();
+        btnAccept = new javax.swing.JButton();
+        btnProcess = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Grievance Enterprise --> Organization Employee");
+
+        tblGrievanceEmployee.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Resident Name", "Priority", "Message", "Status", "Request Date", "Resolve Date"
+            }
+        ));
+        jScrollPane1.setViewportView(tblGrievanceEmployee);
+
+        btnAccept.setText("Accept Assignment");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
+
+        btnProcess.setText("Processs");
+        btnProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcessActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAccept)
+                .addGap(74, 74, 74)
+                .addComponent(btnProcess)
+                .addGap(364, 364, 364))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAccept)
+                    .addComponent(btnProcess))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        
+        row = tblGrievanceEmployee.getSelectedRow();
+        if (row < 0){
+            return;
+        }
+        
+        Complaint complaint = (Complaint) userAccount.getWorkQueue().getListOfWorkQueues().get(row);
+         if (dtm.getValueAt(row, 3).toString().equalsIgnoreCase("Employee On the way"))
+            {
+                JOptionPane.showMessageDialog(this,"Complaint already accepted by the employee", "Complaint already accepted", 2);
+            }
+        
+
+         else complaint.setStatus("Employee On the way");
+        populateTable();
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
+        // TODO add your handling code here:
+        
+         row = tblGrievanceEmployee.getSelectedRow();
+        
+        if (dtm.getValueAt(row, 3).toString().equalsIgnoreCase("Assigned Employee"))
+        {
+            JOptionPane.showMessageDialog(this,"Please accept the complaint before processing", "Complaint not accepted", 2);
+        }
+        
+        else if(dtm.getValueAt(row, 3).toString().equalsIgnoreCase("Employee On the way"))
+        {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Complaint Resolved ? ", "Complaint resolved", dialogButton);
+            if (dialogResult == 0)
+            {
+                
+                WorkQueue workQueue = userAccount.getWorkQueue();
+                Complaint complaint = (Complaint)workQueue.getListOfWorkQueues().get(row);
+                complaint.setStatus("Complaint Resolved");
+                
+                complaint.setResolveDate(new Date());
+                populateTable();
+                JOptionPane.showMessageDialog(this, "Complaint resolved sucessfuly","Complaint resolved",1);
+            }
+           
+        }
+        
+        else if (dtm.getValueAt(row, 3).toString().equalsIgnoreCase("Complaint Resolved"))
+        {
+            JOptionPane.showMessageDialog(this,"Complaint is already resolved", "Complaint resolved", 2);
+        }
+    }//GEN-LAST:event_btnProcessActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnProcess;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblGrievanceEmployee;
     // End of variables declaration//GEN-END:variables
+
+      private void populateTable() {
+      dtm.setRowCount(0);
+  
+        WorkQueue workQueue = organization.getWorkQueue();
+        
+        for(WorkRequest workRequest  : workQueue.getListOfWorkQueues() ){
+            Complaint complaint = (Complaint) workRequest;
+            
+            String receiver = "Not yet Assigned"; 
+            if( complaint.getReceiver() != null)
+                receiver = complaint.getReceiver().getEmployee().getName();
+            
+            Date date = null;
+       
+            if(complaint.getStatus().equalsIgnoreCase("Complaint Resolved")) {
+                  date = complaint.getResolveDate();
+            }
+
+            Object[] objs = {complaint.getSender().getResident().getName(),complaint.getPriority(), complaint.getMessage(), complaint.getStatus(),receiver, complaint.getRequestDate(),date};
+            dtm.addRow(objs);
+            
+        }
+    }
 }

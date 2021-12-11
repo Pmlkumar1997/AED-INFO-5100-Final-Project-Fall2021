@@ -11,6 +11,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.Complaint;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
+import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -61,7 +62,7 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Type of support", "Priority", "Comments", "Status", "Request Date", "Resolve Date"
+                "Type of support", "Priority", "Comments", "Status", "Employee", "Request Date", "Resolve Date"
             }
         ));
         jScrollPane1.setViewportView(tableResidentWorkStatus);
@@ -76,13 +77,17 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(btnRefresh))
-                    .addComponent(btnBack)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(btnRefresh))
+                            .addComponent(btnBack)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,7 +124,17 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
             
             Complaint complaint = (Complaint) workRequest;
             
-            Object[] objs = {complaint.getOrganizationType(),complaint.getPriority(), complaint.getMessage(), complaint.getStatus(), complaint.getRequestDate(),complaint.getResolveDate()};
+            String receiver = "Not yet Assigned"; 
+            if( complaint.getReceiver() != null)
+                receiver = complaint.getReceiver().getEmployee().getName();
+            
+            Date date = null;
+            
+            if(complaint.getStatus().equalsIgnoreCase("Complaint Resolved")) {
+                  date = complaint.getResolveDate();
+            }
+            
+            Object[] objs = {complaint.getOrganizationType(),complaint.getPriority(), complaint.getMessage(), complaint.getStatus(),receiver, complaint.getRequestDate(),date};
             dtm.addRow(objs);
 
             

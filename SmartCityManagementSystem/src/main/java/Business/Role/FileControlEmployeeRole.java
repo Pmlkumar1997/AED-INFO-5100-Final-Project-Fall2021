@@ -10,18 +10,19 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.FireControlEmployee.FireControlEmployeeWorkAreaJPanel;
+import UserInterface.EmergencyEmploye.EmergencyEmployeJPanel;
+
 import javax.swing.JPanel;
 
 /**
  *
- * @author mohithparvataneni
+ * @author Saketh
  */
 public class FileControlEmployeeRole extends Role {
     
      @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new FireControlEmployeeWorkAreaJPanel(userProcessContainer, enterprise);
+        return new EmergencyEmployeJPanel( userProcessContainer,  account,  organization );
     }
     
 }

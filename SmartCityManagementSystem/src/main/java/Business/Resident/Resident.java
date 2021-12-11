@@ -144,5 +144,11 @@ public class Resident {
     public void setIdType(String idType) {
         this.idType = idType;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
   
+    
 }
