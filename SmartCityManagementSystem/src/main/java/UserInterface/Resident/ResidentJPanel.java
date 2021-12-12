@@ -25,7 +25,7 @@ public class ResidentJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Network network;
     
-    public ResidentJPanel(UserAccount userAccount, Network network) {
+    public ResidentJPanel( JPanel userProcessContainer,Network network, UserAccount account) {
         initComponents();
         this.userAccount = userAccount;
         this.network = network;
