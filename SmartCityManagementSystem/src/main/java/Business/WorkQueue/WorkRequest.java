@@ -5,6 +5,7 @@
  */
 package Business.WorkQueue;
 
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -22,13 +23,16 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
-    private String OrganizationType;
+    private Organization OrganizationType;
+    
+    
+    
 
-    public String getOrganizationType() {
+    public Organization getOrganizationType() {
         return OrganizationType;
     }
 
-    public void setOrganizationType(String OrganizationType) {
+    public void setOrganizationType(Organization OrganizationType) {
         this.OrganizationType = OrganizationType;
     }
 

@@ -12,6 +12,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.Complaint;
 import Business.WorkQueue.WorkRequest;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -48,7 +49,7 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
         txtComments = new javax.swing.JTextArea();
         btnRaiseEmergency = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        comboEmergencyType = new javax.swing.JComboBox<>();
+        comboEmergencyType = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         comboPriority = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -69,8 +70,6 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Emergency Type");
-
-        comboEmergencyType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -137,14 +136,14 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addGap(119, 119, 119)
                 .addComponent(btnRaiseEmergency)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRaiseEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaiseEmergencyActionPerformed
         // TODO add your handling code here:
         
-        String emergencyType = comboEmergencyType.getSelectedItem().toString();
+        Organization emergencyType = (Organization) comboEmergencyType.getSelectedItem();
         String priority = comboPriority.getSelectedItem().toString();
         String comments = txtComments.getText();
         
@@ -152,18 +151,19 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
       
         
         Complaint complaint = new Complaint();
-        complaint.setOrganizationType(emergencyType);
+        complaint.setOrganizationType(emergencyType);   
         complaint.setPriority(priority);
         complaint.setMessage(comments);
         complaint.setSender(userAccount);
         complaint.setStatus("Complaint raised");
+        complaint.setRequestDate(new Date());
      
         
         
         
         userAccount.getWorkQueue().addWorkRequest(complaint);
         
-           JOptionPane.showMessageDialog(this, "Request placed successfully !!", "Request", 1);
+        JOptionPane.showMessageDialog(this, "Request placed successfully !!", "Request", 1);
        
         
         
@@ -176,7 +176,7 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRaiseEmergency;
-    private javax.swing.JComboBox<String> comboEmergencyType;
+    private javax.swing.JComboBox comboEmergencyType;
     private javax.swing.JComboBox<String> comboPriority;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -188,8 +188,8 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
 
     private void displayEmergencyType() {
         
-        for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(e.getName().equals(EmergencyResponse)){
+        for(Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+            if(e.getEnterpriseType().equals(EmergencyResponse)){
                 for(Organization org : e.organizationDirectory.getOrganizationList()){
                     comboEmergencyType.addItem(org.toString());
                 }

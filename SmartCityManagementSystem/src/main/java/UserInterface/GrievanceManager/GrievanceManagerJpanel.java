@@ -71,7 +71,7 @@ public class GrievanceManagerJpanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Resident Name", "Priority", "Message", "Status", "Request Date", "Resolve Date"
+                "Resident Name", "Priority", "Message", "Status", "Employee", "Request Date", "Resolve Date"
             }
         ));
         tblOrganizationManager.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -9,6 +9,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.Complaint;
 
 import Business.WorkQueue.WorkRequest;
+import java.util.Date;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -66,7 +67,6 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Grievance Type");
 
-        comboGrievanceType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None" }));
         comboGrievanceType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboGrievanceTypeActionPerformed(evt);
@@ -94,6 +94,11 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
         });
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,7 +150,7 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addComponent(txtRaiseGrievance)
-                .addContainerGap(456, Short.MAX_VALUE))
+                .addContainerGap(454, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -160,11 +165,11 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
          
         // TODO add your handling code here:
         
-       String grievancetype = comboGrievanceType.getSelectedItem().toString();
+       Organization grievancetype = (Organization) comboGrievanceType.getSelectedItem();
        String priority = comboPriority.getSelectedItem().toString();
        String message = txtComments.getText();
         
-       if (grievancetype.isEmpty()||priority.isEmpty()||message.isEmpty())
+       if (grievancetype.equals("")||priority.isEmpty()||message.isEmpty())
          {
              
             JOptionPane.showMessageDialog(this, "One or More fields are empty !!", "Empty Fields", 2);
@@ -178,18 +183,19 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
        complaint.setPriority(priority);
        complaint.setOrganizationType(grievancetype);
        complaint.setStatus("Complaint raised");
+       complaint.setRequestDate(new Date());
        
 
        userAccount.getWorkQueue().addWorkRequest(complaint);
        
-       Organization organization = (Organization) comboGrievanceType.getSelectedItem();
-        
-       organization.getWorkQueue().addWorkRequest(complaint);
-    
        JOptionPane.showMessageDialog(this, "Request placed successfully !!", "Request", 1);
         
         
     }//GEN-LAST:event_txtRaiseGrievanceActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -208,7 +214,7 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
     private void displayGrievanceType() {
       
         for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(enterprise.getName().equals(GrievanceManagement)){
+            if(enterprise.getEnterpriseType().equals(GrievanceManagement)){
                 for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList())
                 comboGrievanceType.addItem(org);
             }

@@ -44,7 +44,7 @@ public class DonateJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
 
-        btnHelpRequest.setText("Raise help request");
+        btnHelpRequest.setText("Make Donation");
 
         btnBack.setText("Back");
 
@@ -54,8 +54,6 @@ public class DonateJPanel extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Donate to");
-
-        comboDonateTo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Amount");
@@ -101,7 +99,7 @@ public class DonateJPanel extends javax.swing.JPanel {
                     .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(btnHelpRequest)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(295, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

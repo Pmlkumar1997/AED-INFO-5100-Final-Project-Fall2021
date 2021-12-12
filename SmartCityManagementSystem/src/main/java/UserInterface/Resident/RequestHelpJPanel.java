@@ -5,9 +5,20 @@
 package UserInterface.Resident;
 
 
+import Business.Enterprise.Enterprise;
+import static Business.Enterprise.Enterprise.EnterpriseType.CovidHelp;
+import static Business.Enterprise.Enterprise.EnterpriseType.EmergencyResponse;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Complaint;
+import Business.WorkQueue.HelpRequest;
+import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,11 +32,16 @@ public class RequestHelpJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Network network ;
     private UserAccount userAccount;
+    DefaultTableModel dtm;
+    
     public RequestHelpJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.network=network;
         this.userAccount = userAccount;
+        populateOrganizations();
+        populateTable();
+        dtm = (DefaultTableModel) tblRequestHelp.getModel();
     }
 
     /**
@@ -39,7 +55,7 @@ public class RequestHelpJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        comboRequestHelpFrom = new javax.swing.JComboBox<>();
+        comboRequestHelpFrom = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
@@ -47,6 +63,9 @@ public class RequestHelpJPanel extends javax.swing.JPanel {
         txtBankNumber = new javax.swing.JTextField();
         btnRaiseHelpRequest = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        txtcomments = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblRequestHelp = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -55,10 +74,9 @@ public class RequestHelpJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Request help from");
 
-        comboRequestHelpFrom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("Covid report proof");
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Comments");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Amount");
@@ -67,80 +85,195 @@ public class RequestHelpJPanel extends javax.swing.JPanel {
         jLabel9.setText("Bank Account number");
 
         btnRaiseHelpRequest.setText("Raise help request");
+        btnRaiseHelpRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaiseHelpRequestActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        txtcomments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcommentsActionPerformed(evt);
+            }
+        });
+
+        tblRequestHelp.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Help from", "Comments", "Amount", "Bank Account number", "Status", "Request Date", "Resolve Date"
+            }
+        ));
+        jScrollPane1.setViewportView(tblRequestHelp);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRaiseHelpRequest)
+                .addGap(322, 322, 322))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
+                        .addGap(111, 111, 111)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(144, 144, 144)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel8))
-                                .addGap(49, 49, 49))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(30, 30, 30)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBankNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboRequestHelpFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                                            .addComponent(jLabel9))
+                                        .addGap(49, 49, 49)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtBankNumber)
+                                            .addComponent(txtAmount)
+                                            .addComponent(txtcomments, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(jLabel6)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(comboRequestHelpFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(337, 337, 337)
-                        .addComponent(btnRaiseHelpRequest)))
-                .addContainerGap(285, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(7, 7, 7)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(comboRequestHelpFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addComponent(jLabel7)
-                .addGap(42, 42, 42)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtcomments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(55, 55, 55))
-                    .addComponent(txtBankNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBankNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(27, 27, 27)
                 .addComponent(btnRaiseHelpRequest)
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(243, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtcommentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcommentsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcommentsActionPerformed
+
+    private void btnRaiseHelpRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaiseHelpRequestActionPerformed
+        // TODO add your handling code here:
+        
+        Organization requestHelpFrom = (Organization) comboRequestHelpFrom.getSelectedItem();
+        
+        String helpComments = txtcomments.getText();
+        
+        String amount = txtAmount.getText();
+        String bankAccountNumber = txtBankNumber.getText();
+        
+        double doubleAmount = Double.parseDouble(amount);
+        
+        HelpRequest helpRequest = new HelpRequest();
+        helpRequest.setOrganizationType(requestHelpFrom);
+        helpRequest.setHelpComments(helpComments);
+        helpRequest.setAmount(doubleAmount);
+        helpRequest.setAccountNumber(bankAccountNumber);
+        helpRequest.setSender(userAccount);
+        helpRequest.setRequestDate(new Date());
+        helpRequest.setStatus("Amount requested");
+
+        userAccount.getWorkQueue().addWorkRequest(helpRequest);
+        
+        requestHelpFrom.getWorkQueue().addWorkRequest(helpRequest);
+        
+        
+        populateTable();
+       
+        JOptionPane.showMessageDialog(this, "Request for amount placed successfully !!", "Request", 1);
+       
+        
+    }//GEN-LAST:event_btnRaiseHelpRequestActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRaiseHelpRequest;
-    private javax.swing.JComboBox<String> comboRequestHelpFrom;
+    private javax.swing.JComboBox comboRequestHelpFrom;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblRequestHelp;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtBankNumber;
+    private javax.swing.JTextField txtcomments;
     // End of variables declaration//GEN-END:variables
+
+    private void populateOrganizations() {
+         for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+            if(e.getName().equals(CovidHelp)){
+                for(Organization org : e.organizationDirectory.getOrganizationList()){
+                    comboRequestHelpFrom.addItem(org);
+                }
+                
+                
+            }
+        }
+    }
+
+    private void populateTable() {
+        
+        dtm.setRowCount(0);
+  
+        WorkQueue workQueue = userAccount.getWorkQueue();
+        
+        for(WorkRequest workRequest  : workQueue.getListOfWorkQueues() ){
+            
+            HelpRequest helpRequest = (HelpRequest) workRequest;
+
+            Date date = null;
+            
+            if(helpRequest.getStatus().equalsIgnoreCase("Deposited Amount")) {
+                  date = helpRequest.getResolveDate();
+            }
+            
+            Object[] objs = {helpRequest.getOrganizationType(),helpRequest.getHelpComments(),helpRequest.getAmount(),helpRequest.getAccountNumber(),helpRequest.getStatus(), helpRequest.getRequestDate(),date};
+            dtm.addRow(objs);
+
+            
+        }
+    }
 }

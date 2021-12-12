@@ -6,11 +6,20 @@
 package UserInterface.NGOManager;
 
 import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Complaint;
+import Business.WorkQueue.HelpRequest;
+import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mohithparvataneni
+ * @author Saketh
  */
 public class NGOManagerWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -19,10 +28,23 @@ public class NGOManagerWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
-    public NGOManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    DefaultTableModel dtm;
+    UserAccount userAccount;
+    Organization organization;
+    int row, col;
+    
+    public NGOManagerWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, Organization organization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.organization = organization;
+        
+        dtm = (DefaultTableModel) tblNgoManager.getModel();
+        
+        PopulateTable();
+        populateAmountField();
+        
+                
     }
 
     /**
@@ -34,19 +56,214 @@ public class NGOManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblNgoManager = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtAmmount = new javax.swing.JTextField();
+        btnAccept = new javax.swing.JButton();
+        btnSend = new javax.swing.JButton();
+        btnDecline = new javax.swing.JButton();
+
+        tblNgoManager.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Resident Name", "Comments", "Amount", "Bank Account Number", "Status", "Request date", "Resolve date"
+            }
+        ));
+        jScrollPane1.setViewportView(tblNgoManager);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("NGO Manager Work Area");
+
+        jLabel2.setText("Total Amount");
+
+        btnAccept.setText("Accept help request");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
+
+        btnSend.setText("Send Amount");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
+
+        btnDecline.setText("Decline help request");
+        btnDecline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeclineActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(btnAccept)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnDecline))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel2)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtAmmount, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnSend)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addGap(54, 54, 54)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAccept)
+                    .addComponent(btnDecline))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtAmmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSend))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        
+      row = tblNgoManager.getSelectedRow();
+        
+        String currentStatus = dtm.getValueAt(row, 4).toString();
+        
+        if(currentStatus.equalsIgnoreCase("Amount requested"))
+        {
+
+            organization.getWorkQueue().getListOfWorkQueues().get(row).setStatus("Request for money is Accepted");
+
+            JOptionPane.showMessageDialog(this, "Money request is Accepted", " money request Accepted", 1);
+           
+        }
+        
+        else if(currentStatus.equalsIgnoreCase("Amount request Declined")){
+            
+            JOptionPane.showMessageDialog(this, "This request is Already declined earlier", " Complaint declined", 1);
+            
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Amount request is already accepted", " amount request Accepted", 1);
+            
+        }
+        PopulateTable();
+        
+        
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        // TODO add your handling code here:
+        
+        row = tblNgoManager.getSelectedRow();
+        
+        String amount = dtm.getValueAt(row, 2).toString();
+        
+        double amountasked = Double.parseDouble(amount);
+        
+        String ngoAmount = txtAmmount.getText();
+        
+        double ngoAmountInDouble = Double.parseDouble(ngoAmount);
+        double finalAmount = ngoAmountInDouble-amountasked;
+        
+        txtAmmount.setText(Double.toString(finalAmount));
+
+    }//GEN-LAST:event_btnSendActionPerformed
+
+    private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
+        
+        
+        row = tblNgoManager.getSelectedRow();
+        
+        String currentStatus = dtm.getValueAt(row, 4).toString();
+        
+        if(currentStatus.equalsIgnoreCase("Amount requested"))
+        {
+
+            organization.getWorkQueue().getListOfWorkQueues().get(row).setStatus("Amount request Declined");
+
+            JOptionPane.showMessageDialog(this, "Money request is Declined", " money request declined", 1);
+           
+        }
+        
+        else if(currentStatus.equalsIgnoreCase("Amount request Declined")){
+            
+            JOptionPane.showMessageDialog(this, "This request is Already declined earlier", " Complaint declined", 1);
+            
+            
+        } 
+        else{
+            JOptionPane.showMessageDialog(this, "Amount request is already accepted", " amount request Accepted", 1);
+            
+        }
+        PopulateTable();
+    }//GEN-LAST:event_btnDeclineActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnDecline;
+    private javax.swing.JButton btnSend;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblNgoManager;
+    private javax.swing.JTextField txtAmmount;
     // End of variables declaration//GEN-END:variables
+
+    private void PopulateTable() {
+        
+        dtm.setRowCount(0);
+        
+        WorkQueue workQueue = organization.getWorkQueue();
+        
+        for(WorkRequest workRequest  : workQueue.getListOfWorkQueues() ){
+            HelpRequest helpRequest = (HelpRequest) workRequest;
+            
+            
+            
+            Date date = null;
+            if(helpRequest.getStatus().equalsIgnoreCase("Money transferred sucessfully")) {
+                  date = helpRequest.getResolveDate();
+            }
+
+            Object[] objs = {helpRequest.getSender().getResident().getName(), helpRequest.getHelpComments(), helpRequest.getAmount(), helpRequest.getAccountNumber(), helpRequest.getStatus(), helpRequest.getRequestDate(),helpRequest.getResolveDate()};
+            dtm.addRow(objs);
+            
+        }
+       
+       
+    }
+
+    private void populateAmountField() {
+       
+        txtAmmount.setText("2395000");
+        
+    }
+  
 }
