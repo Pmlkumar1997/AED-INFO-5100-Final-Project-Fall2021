@@ -2,17 +2,15 @@
 
 # Title -- > SMART CITY MANAGEMENT ECO-SYSTEM
 
----Description------
-# Technology has evolved in many ways. Today we have wonderful applications and helpline available in the market that are helpful for people. For example, in a city each community has their own application to raise grievance complaints, in order to contact emergency department we can contact Police or hospital through helpline numbers. But all these are individual sectors and each has their own procedures to contact them.
+# Description
+Technology has evolved in many ways. Today we have wonderful applications and helpline available in the market that are helpful for people. For example, in a city each community has their own application to raise grievance complaints, in order to contact emergency department we can contact Police or hospital through helpline numbers. But all these are individual sectors and each has their own procedures to contact them.
 
----What's difference from the existing eco systems---
-# In order to resolve all the mentioned challenges, we come up with an application where we have integrated all the sectors in one place. Now using our proposed solution residents can raise their requests such as Grievance requests, Emergency requests and Covid help requests from a common platform.
+# What's difference from the existing eco systems
+In order to resolve all the mentioned challenges, we come up with an application where we have integrated all the sectors in one place. Now using our proposed solution residents can raise their requests such as Grievance requests, Emergency requests and Covid help requests from a common platform.
 
----About our Eco-System---
-# The main purpose of our ecosystem is to help residents in a network. In order to achieve this we have developed a Java Swing application where residents can raise requests directly to yhe particular organizations for all the household and other problems using one common platform. In our application residents can raise requests for the following categories: Grievance maintenance request, Emergency request and Covid Help requests.
-
-# Each request is further classified into more types based upon enterprise. Each enterprise has different organizations. For example Grievance enterprise has Water supply Org, Street Light Org , Garbage Removal Org and police department org. Like wise Emergency and Covid help enterprises has their own organizations to fulfill resident requests.
-
+# About our Eco-System
+The main purpose of our ecosystem is to help residents in a network. In order to achieve this we have developed a Java Swing application where residents can raise requests directly to yhe particular organizations for all the household and other problems using one common platform. In our application residents can raise requests for the following categories: Grievance maintenance request, Emergency request and Covid Help requests.
+Each request is further classified into more types based upon enterprise. Each enterprise has different organizations. For example Grievance enterprise has Water supply Org, Street Light Org , Garbage Removal Org and police department org. Like wise Emergency and Covid help enterprises has their own organizations to fulfill resident requests.
 
 # Implemented enterprises:
  1. Emergency Enterprises
