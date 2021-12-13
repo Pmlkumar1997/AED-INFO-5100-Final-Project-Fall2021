@@ -10,8 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.StreetLightMaintenanceManager.StreetLightMaintenanceManagerWorkAreaJPanel;
-import UserInterface.StreetLightingMaintenanceEmployee.StreetLightingMaintenanceEmpWorkAreaJPanel;
+import UserInterface.GrievanceEmploye.GrievanceEmployeeJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -22,7 +21,7 @@ public class StreetLightingMaintenanceEmpRole extends Role{
     
      @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new StreetLightingMaintenanceEmpWorkAreaJPanel(userProcessContainer, enterprise);
+        return new GrievanceEmployeeJPanel(userProcessContainer, account, organization);
     }
     
 }

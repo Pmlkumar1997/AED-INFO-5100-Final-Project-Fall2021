@@ -26,7 +26,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.enterprise = enterprise;
         this.userProcessContainer = userProcessContainer;
-          //valuelbl.setText(enterprise.getName());
+        lblEnterprise.setText(enterprise.getName());
     }
 
     /**
@@ -40,40 +40,72 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         btnManageOrganization = new javax.swing.JButton();
         btnManageEmployee = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblEnterprise = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        btnManageOrganization.setBackground(new java.awt.Color(204, 255, 255));
+        btnManageOrganization.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnManageOrganization.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-organization-48.png")); // NOI18N
         btnManageOrganization.setText("Manage Organization");
+        btnManageOrganization.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageOrganizationActionPerformed(evt);
             }
         });
 
+        btnManageEmployee.setBackground(new java.awt.Color(204, 255, 255));
+        btnManageEmployee.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnManageEmployee.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-employee-64.png")); // NOI18N
         btnManageEmployee.setText("Manage Employee");
+        btnManageEmployee.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnManageEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageEmployeeActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 102));
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-admin-settings-male-48.png")); // NOI18N
+        jLabel1.setText("Enterprise Admin");
+
+        lblEnterprise.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        lblEnterprise.setForeground(new java.awt.Color(255, 51, 102));
+        lblEnterprise.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-enterprise-64.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(256, 256, 256)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(btnManageEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(397, 397, 397)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(328, 328, 328)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(btnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101)
-                .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(98, 98, 98)
+                .addComponent(btnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -109,5 +141,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageEmployee;
     private javax.swing.JButton btnManageOrganization;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblEnterprise;
     // End of variables declaration//GEN-END:variables
 }

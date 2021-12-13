@@ -68,28 +68,28 @@ public class Employee {
                 role = "WaterSupplyManager";
                 break;
             case 6:
-                role = "FireControlEmployee";
+                role = "StreetLightingTechnician";
                 break;
             case 7:
-                role = "FireControlManager";
-                break;
-            case 8:
-                role = "StreetLightingMaintenanceEmployee";
-                break;
-            case 9:
                 role = "StreetLightingMaintenanceManager";
                 break;
-            case 10:
-                role = "PoliceDepartmentHead";
-                break;
-            case 11:
+            case 8:
                 role = "PoliceMan";
                 break;
+            case 9:
+                role = "PoliceDepartmentHead";
+                break;
+            case 10:
+                role = "FireControlOrganizationEmployee";
+                break;
+            case 11:
+                role = "FireDepartmentHead";
+                break;
             case 12:
-                role = "HospitalManager";
+                role = "Doctor";
                 break;
             case 13:
-                role = "Doctor";
+                role = "HospitalManager";
                 break;
             case 14:
                 role = "NGOManager";
@@ -108,28 +108,28 @@ public class Employee {
         
         String org = "";
         if (roleNumber == 2 || roleNumber == 3) {
-            org = "Garbage Removal Organization";
+            org = "GarbageRemovalOrganization";
         }
         if (roleNumber == 4 || roleNumber == 5) {
-            org = "Water Supply Organization";
+            org = "WaterSupplyOrganization";
         }
         if (roleNumber == 6 || roleNumber == 7) {
-            org = "Fire Control Organization";
+            org = "StreetLightingOrganization";
         }
         if (roleNumber == 8 || roleNumber == 9) {
-            org = "Street Lighting Maintenance Organization";
+            org = "PoliceOrganization";
         }
         if (roleNumber == 10 || roleNumber == 11) {
-            org = "Police Organization";
+            org = "FireControlOrganization";
         }
         if (roleNumber == 12 || roleNumber == 13) {
-            org = "Hospital Organization";
+            org = "HospitalOrganization";
         }
         if (roleNumber == 14) {
             org = "NGO";
         }
          if (roleNumber == 15) {
-            org = "Government Organization";
+            org = "GovernmentOrganization";
         }
         return org;
     }

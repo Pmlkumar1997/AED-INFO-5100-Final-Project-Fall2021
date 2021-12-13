@@ -5,8 +5,16 @@
 package UserInterface.Resident;
 
 
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.Enterprise.EnterpriseType;
+import static Business.Enterprise.Enterprise.EnterpriseType.EmergencyResponse;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.Complaint;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,11 +29,18 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Network network;
     private UserAccount userAccount;
-    public RaiseEmergencyRequestJPanel(JPanel userProcessContainer, UserAccount userAccount,Network network) {
+    
+    public RaiseEmergencyRequestJPanel(JPanel userProcessContainer, UserAccount userAccount, Network network) {
+        
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.network = network;
         this.userAccount = userAccount;
+        System.out.println( "hi");
+        
+        displayEmergencyType();
+        System.out.println( "hi");
+        
     }
 
     /**
@@ -41,110 +56,155 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
         txtComments = new javax.swing.JTextArea();
         btnRaiseEmergency = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        comboEmergencyType = new javax.swing.JComboBox<>();
+        comboEmergencyType = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         comboPriority = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         txtComments.setColumns(20);
         txtComments.setRows(5);
         jScrollPane1.setViewportView(txtComments);
 
-        btnRaiseEmergency.setText("Raise Emergency Request");
+        btnRaiseEmergency.setBackground(new java.awt.Color(204, 255, 255));
+        btnRaiseEmergency.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-siren-48.png")); // NOI18N
         btnRaiseEmergency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRaiseEmergencyActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Emergency Type");
 
-        comboEmergencyType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
+        comboEmergencyType.setBackground(new java.awt.Color(204, 255, 255));
+        comboEmergencyType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null" }));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Priority");
 
         comboPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null", "High Priority", "low priority" }));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Comments");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-stop-squared-48.png")); // NOI18N
         jLabel1.setText("Raise Emergency request");
 
-        btnBack.setText("Back");
+        btnBack.setBackground(new java.awt.Color(204, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-back-arrow-48.png")); // NOI18N
+        btnBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
+                        .addGap(344, 344, 344)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(btnRaiseEmergency))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2))
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(comboEmergencyType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(comboPriority, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboEmergencyType, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboPriority, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(btnBack)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(531, 531, 531)
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(510, 510, 510)
+                        .addComponent(btnRaiseEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(btnBack)
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(comboEmergencyType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(comboEmergencyType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(119, 119, 119)
+                .addGap(59, 59, 59)
                 .addComponent(btnRaiseEmergency)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRaiseEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaiseEmergencyActionPerformed
         // TODO add your handling code here:
         
+        String emergencyType = comboEmergencyType.getSelectedItem().toString();
+        String priority = comboPriority.getSelectedItem().toString();
+        String comments = txtComments.getText();
         
+       
+        Complaint complaint = new Complaint();
+        complaint.setOrganizationType(emergencyType);
+        complaint.setPriority(priority);
+        complaint.setMessage(comments);
+        complaint.setSender(userAccount);
+        complaint.setStatus("Complaint raised");
+        complaint.setRequestType("Complaint");
+     
+        userAccount.getWorkQueue().addWorkRequest(complaint);
+        
+        Organization organization = (Organization) comboEmergencyType.getSelectedItem();
+
+        organization.getWorkQueue().addWorkRequest(complaint);
+        
+        
+        JOptionPane.showMessageDialog(this, "Request placed successfully !!", "Request", 1);
+       
+        comboEmergencyType.setSelectedIndex(0);
+        comboPriority.setSelectedIndex(0);
+        txtComments.setText("");
     }//GEN-LAST:event_btnRaiseEmergencyActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRaiseEmergency;
-    private javax.swing.JComboBox<String> comboEmergencyType;
+    private javax.swing.JComboBox comboEmergencyType;
     private javax.swing.JComboBox<String> comboPriority;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -153,4 +213,20 @@ public class RaiseEmergencyRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtComments;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void displayEmergencyType() {
+        
+//        comboEmergencyType.removeAllItems();
+        System.out.println(network +"boom ");
+        for(Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
+           System.out.println(e.getEnterpriseType() + "  check");
+           
+            if(e.getEnterpriseType().equals(EmergencyResponse)){
+                for(Organization org : e.getOrganizationDirectory().getOrganizationList())
+                    comboEmergencyType.addItem(org);
+            }
+   
+            }
+        }
+    }
+

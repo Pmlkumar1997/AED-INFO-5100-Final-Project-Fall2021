@@ -11,6 +11,8 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.Complaint;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,10 +30,12 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
     private final UserAccount userAccount;
     private DefaultTableModel dtm;
     int row,col;
-    public ResidentCheckStatusJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network ) {
+    public ResidentCheckStatusJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network  ) {
         
         initComponents();
         this.userAccount = userAccount;
+        this.userProcessContainer = userProcessContainer;
+        this.network = network;
         
         dtm = (DefaultTableModel) tableResidentWorkStatus.getModel();
         populateTable();
@@ -49,61 +53,77 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableResidentWorkStatus = new javax.swing.JTable();
-        btnRefresh = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Status");
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-true-false-48.png")); // NOI18N
+        jLabel1.setText("  Requests Status");
 
         tableResidentWorkStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Type of support", "Priority", "Comments", "Status", "Request Date", "Resolve Date"
+                "Type of support", "Priority", "Comments", "Status", "Employee", "Request Date", "Resolve Date"
             }
         ));
         jScrollPane1.setViewportView(tableResidentWorkStatus);
 
-        btnRefresh.setText("Refresh");
-
-        btnBack.setText("Back");
+        btnBack.setBackground(new java.awt.Color(204, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-back-arrow-48.png")); // NOI18N
+        btnBack.setActionCommand("");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(btnRefresh))
-                    .addComponent(btnBack)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(222, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(161, 161, 161))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBack)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnRefresh)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(68, 68, 68)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(213, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableResidentWorkStatus;
@@ -116,12 +136,23 @@ public class ResidentCheckStatusJPanel extends javax.swing.JPanel {
         WorkQueue workQueue = userAccount.getWorkQueue();
         
         for(WorkRequest workRequest  : workQueue.getListOfWorkQueues() ){
-            
-            Complaint complaint = (Complaint) workRequest;
-            
-            Object[] objs = {complaint.getOrganizationType(),complaint.getPriority(), complaint.getMessage(), complaint.getStatus(), complaint.getRequestDate(),complaint.getResolveDate()};
-            dtm.addRow(objs);
+            if (workRequest.getRequestType().equalsIgnoreCase("Complaint"))
+            {
+                Complaint complaint = (Complaint) workRequest;
 
+                String receiver = "Not yet Assigned"; 
+                if( complaint.getReceiver() != null)
+                    receiver = complaint.getReceiver().getEmployee().getName();
+
+                Date date = null;
+
+                if(complaint.getStatus().equalsIgnoreCase("Complaint Resolved")) {
+                      date = complaint.getResolveDate();
+                }
+
+                Object[] objs = {complaint.getOrganizationType(),complaint.getPriority(), complaint.getMessage(), complaint.getStatus(),receiver, complaint.getRequestDate(),date};
+                dtm.addRow(objs);
+            }
             
         }
         

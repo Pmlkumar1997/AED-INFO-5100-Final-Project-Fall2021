@@ -51,17 +51,25 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         tableNetwork = new javax.swing.JTable();
         lblHeading = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        lblNetwork.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         lblNetwork.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNetwork.setText("Network");
 
-        btnAdd.setText("Add");
+        btnAdd.setBackground(new java.awt.Color(204, 255, 255));
+        btnAdd.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-add-48-2.png")); // NOI18N
+        btnAdd.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
 
-        btnBack.setText("Back");
+        btnBack.setBackground(new java.awt.Color(204, 255, 255));
+        btnBack.setForeground(new java.awt.Color(204, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-back-arrow-48.png")); // NOI18N
+        btnBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -78,79 +86,68 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableNetwork);
 
-        lblHeading.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblHeading.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblHeading.setForeground(new java.awt.Color(255, 51, 102));
         lblHeading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeading.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-social-network-64.png")); // NOI18N
         lblHeading.setText("Add Network");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblHeading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(152, 152, 152))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(257, 257, 257)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
+                        .addComponent(lblNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(txtNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(325, Short.MAX_VALUE))
+                            .addComponent(txtNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdd))))
+                .addContainerGap(438, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(lblHeading)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack))
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(30, 30, 30)
+                .addComponent(btnAdd)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        String networkName = txtNetwork.getText();
-        
-        if(networkName.isEmpty())
-        {
-            JOptionPane.showMessageDialog(this,"Please enter Network");
-            return;
+        String name = txtNetwork.getText().trim();
+        if(!name.isEmpty()){
+            if(ecosystem.isUnique(name)){
+                Network network = ecosystem.createAndAddNetwork();
+                network.setName(name);
+                JOptionPane.showMessageDialog(null, "Network Successfully Created");
+                txtNetwork.setText("");
+            } else{
+                JOptionPane.showMessageDialog(null, "Network Already Exits");
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "Enter city name");
         }
-        
-        String name = txtNetwork.getText();
-        
-        ArrayList<String> list= new ArrayList<>();
-        
-        for(Network net: ecosystem.getNetworkList())
-        {
-            list.add(net.getName());
-
-        }
-        
-        if(list.contains(name.equalsIgnoreCase(name)))
-        {
-            JOptionPane.showMessageDialog(null, "Network already exists");
-            return;
-        }
-        Network network = ecosystem.createAndAddNetwork();
-        network.setName(name);
         
         populateTable();
         txtNetwork.setText("");

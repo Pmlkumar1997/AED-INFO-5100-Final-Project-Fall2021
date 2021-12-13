@@ -74,6 +74,13 @@ public class UserAccount {
     public void setResident(Resident resident) {
         this.resident = resident;
     }
+
+    @Override
+    public String toString() {
+        if (this.employee != null) return this.employee.getName();
+        else if (this.resident != null) return this.resident.getName();
+        else return "";
+    }
     
     
     

@@ -22,7 +22,17 @@ public abstract class Organization {
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
-    private static int counter;
+    private static int counter=0;
+    private int availableFunds;
+    private int ngoAvailableFunds;
+
+    public int getNgoAvailableFunds() {
+        return ngoAvailableFunds;
+    }
+
+    public void setNgoAvailableFunds(int ngoAvailableFunds) {
+        this.ngoAvailableFunds = ngoAvailableFunds;
+    }
     
     public enum Type
     {
@@ -54,6 +64,8 @@ public abstract class Organization {
 
     public Organization(String name) {
         this.name = name;
+        this.availableFunds = 500000;
+        this.ngoAvailableFunds = 100000;
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
@@ -96,6 +108,14 @@ public abstract class Organization {
         this.workQueue = workQueue;
     }
 
+    public int getAvailableFunds() {
+        return availableFunds;
+    }
+
+    public void setAvailableFunds(int availableFunds) {
+        this.availableFunds = availableFunds;
+    }
+    
     @Override
     public String toString() {
         return name;

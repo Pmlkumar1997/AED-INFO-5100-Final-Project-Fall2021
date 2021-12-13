@@ -7,8 +7,8 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.Complaint;
-
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,10 +30,11 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Network network;
     private UserAccount userAccount;
-    public RaiseGrievanceRequestJPanel(JPanel userProcessContainer,UserAccount account, Network network) {
+    public RaiseGrievanceRequestJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network) {
+        
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.userAccount = account;
+        this.userAccount = userAccount;
         this.network = network;
         displayGrievanceType();
     }
@@ -55,14 +56,18 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtComments = new javax.swing.JTextArea();
-        txtRaiseGrievance = new javax.swing.JButton();
+        btnRaiseGrievance = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-service-48.png")); // NOI18N
         jLabel1.setText("Raise Grievance complaint");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Grievance Type");
 
@@ -73,12 +78,13 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Priority");
 
         comboPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "High Priority", "Medium Priority", "Low Priority" }));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Comments");
 
@@ -86,77 +92,87 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
         txtComments.setRows(5);
         jScrollPane1.setViewportView(txtComments);
 
-        txtRaiseGrievance.setText("Raise Grievance complaint");
-        txtRaiseGrievance.addActionListener(new java.awt.event.ActionListener() {
+        btnRaiseGrievance.setBackground(new java.awt.Color(204, 255, 255));
+        btnRaiseGrievance.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-maintenance-48.png")); // NOI18N
+        btnRaiseGrievance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRaiseGrievanceActionPerformed(evt);
+                btnRaiseGrievanceActionPerformed(evt);
             }
         });
 
-        btnBack.setText("Back");
+        btnBack.setBackground(new java.awt.Color(204, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon("/Users/mohithparvataneni/Downloads/icons8-back-arrow-48.png")); // NOI18N
+        btnBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(149, 149, 149))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(366, 366, 366)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(comboGrievanceType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(comboPriority, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addComponent(comboGrievanceType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboPriority, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(txtRaiseGrievance))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(btnBack)))
-                .addContainerGap(276, Short.MAX_VALUE))
+                        .addGap(528, 528, 528)
+                        .addComponent(btnRaiseGrievance, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBack)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(btnBack))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(comboGrievanceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(comboPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33)
-                .addComponent(txtRaiseGrievance)
-                .addContainerGap(456, Short.MAX_VALUE))
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(59, 59, 59)
+                .addComponent(btnRaiseGrievance, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(387, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboGrievanceTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGrievanceTypeActionPerformed
-        // TODO add your handling code here:
-        
         
         
     }//GEN-LAST:event_comboGrievanceTypeActionPerformed
 
-    private void txtRaiseGrievanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRaiseGrievanceActionPerformed
+    private void btnRaiseGrievanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaiseGrievanceActionPerformed
          
         // TODO add your handling code here:
         
@@ -177,20 +193,35 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
        complaint.setSender(userAccount);
        complaint.setPriority(priority);
        complaint.setOrganizationType(grievancetype);
-       
+       complaint.setStatus("Complaint raised");
+       complaint.setRequestType("Complaint");
 
        userAccount.getWorkQueue().addWorkRequest(complaint);
-        
-      
+       
+       Organization organization = (Organization) comboGrievanceType.getSelectedItem();
+       
+       
+       organization.getWorkQueue().addWorkRequest(complaint);
     
        JOptionPane.showMessageDialog(this, "Request placed successfully !!", "Request", 1);
+       comboGrievanceType.setSelectedIndex(0);
+       comboPriority.setSelectedIndex(0);
+       txtComments.setText("");
+       
         
+    }//GEN-LAST:event_btnRaiseGrievanceActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         
-    }//GEN-LAST:event_txtRaiseGrievanceActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnRaiseGrievance;
     private javax.swing.JComboBox comboGrievanceType;
     private javax.swing.JComboBox<String> comboPriority;
     private javax.swing.JLabel jLabel1;
@@ -199,19 +230,17 @@ public class RaiseGrievanceRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtComments;
-    private javax.swing.JButton txtRaiseGrievance;
     // End of variables declaration//GEN-END:variables
 
     private void displayGrievanceType() {
       
+        System.out.println(network);
         for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(enterprise.getName().equals(GrievanceManagement)){
+            if(enterprise.getEnterpriseType().equals(GrievanceManagement)){
                 for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList())
-                comboGrievanceType.addItem(org);
+                    comboGrievanceType.addItem(org);
             }
-            
-            
-            
+   
         }
     }
 }

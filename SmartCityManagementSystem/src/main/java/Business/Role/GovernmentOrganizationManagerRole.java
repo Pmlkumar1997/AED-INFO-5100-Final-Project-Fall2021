@@ -22,6 +22,6 @@ public class GovernmentOrganizationManagerRole extends Role {
     
      @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new GovernmentOrganizationManagerWorkAreaJPanel(userProcessContainer, enterprise);
+        return new GovernmentOrganizationManagerWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
     }
 }

@@ -23,6 +23,7 @@ public abstract class WorkRequest {
     private Date requestDate;
     private Date resolveDate;
     private String OrganizationType;
+    private String requestType;
 
     public String getOrganizationType() {
         return OrganizationType;
@@ -85,7 +86,15 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
     
-  
+    
 }
 
